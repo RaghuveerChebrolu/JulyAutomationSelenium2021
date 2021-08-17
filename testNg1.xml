@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" parallel="false">
+	<test name="Test">
+		<classes>
+			<class name="com.testNg.TestNg1">
+				<methods>
+					<include name="testCase3"></include>
+				</methods>
+			</class>
+			<class name="com.testNg.TestNg2">
+				<methods>
+					<include name="abc"></include>
+				</methods>
+			</class>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
