@@ -2,60 +2,64 @@
 <testng-results skipped="0" failed="1" ignored="0" total="4" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="3140" started-at="2021-08-17T04:58:44Z" finished-at="2021-08-17T04:58:47Z">
+  <suite name="Default suite" duration-ms="2226" started-at="2021-08-18T03:09:41Z" finished-at="2021-08-18T03:09:43Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="3140" started-at="2021-08-17T04:58:44Z" finished-at="2021-08-17T04:58:47Z">
+    <test name="Default test" duration-ms="2226" started-at="2021-08-18T03:09:41Z" finished-at="2021-08-18T03:09:43Z">
       <class name="com.testNg.TestNg3">
-        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeSuite" is-config="true" duration-ms="6961" started-at="2021-08-17T04:58:37Z" finished-at="2021-08-17T04:58:44Z">
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeSuite" is-config="true" duration-ms="4478" started-at="2021-08-18T03:09:36Z" finished-at="2021-08-18T03:09:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeSuite -->
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeTest" is-config="true" duration-ms="0" started-at="2021-08-17T04:58:44Z" finished-at="2021-08-17T04:58:44Z">
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeTest" is-config="true" duration-ms="4" started-at="2021-08-18T03:09:41Z" finished-at="2021-08-18T03:09:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeClass" is-config="true" duration-ms="1" started-at="2021-08-17T04:58:44Z" finished-at="2021-08-17T04:58:44Z">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeClass" is-config="true" duration-ms="0" started-at="2021-08-18T03:09:41Z" finished-at="2021-08-18T03:09:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeClass -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeMethod" is-config="true" duration-ms="2" started-at="2021-08-17T04:58:44Z" finished-at="2021-08-17T04:58:44Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeMethod" is-config="true" duration-ms="2" started-at="2021-08-18T03:09:41Z" finished-at="2021-08-18T03:09:41Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="ValidateEnterGMOOnline()[pri:1, instance:com.testNg.TestNg3@1a968a59]" name="ValidateEnterGMOOnline" duration-ms="1324" started-at="2021-08-17T04:58:44Z" finished-at="2021-08-17T04:58:45Z">
+        <test-method status="PASS" signature="ValidateEnterGMOOnline()[pri:1, instance:com.testNg.TestNg3@1a968a59]" name="ValidateEnterGMOOnline" duration-ms="752" started-at="2021-08-18T03:09:41Z" finished-at="2021-08-18T03:09:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidateEnterGMOOnline -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterMethod" is-config="true" duration-ms="3" started-at="2021-08-17T04:58:45Z" finished-at="2021-08-17T04:58:45Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterMethod" is-config="true" duration-ms="0" started-at="2021-08-18T03:09:42Z" finished-at="2021-08-18T03:09:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeMethod" is-config="true" duration-ms="1" started-at="2021-08-17T04:58:45Z" finished-at="2021-08-17T04:58:45Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2021-08-18T03:09:42Z" finished-at="2021-08-18T03:09:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="ValidateGmoOnlineLoadedSuccessfully()[pri:1, instance:com.testNg.TestNg3@1a968a59]" name="ValidateGmoOnlineLoadedSuccessfully" duration-ms="23" started-at="2021-08-17T04:58:45Z" finished-at="2021-08-17T04:58:45Z">
+        <test-method status="PASS" signature="ValidateGmoOnlineLoadedSuccessfully()[pri:1, instance:com.testNg.TestNg3@1a968a59]" name="ValidateGmoOnlineLoadedSuccessfully" duration-ms="40" started-at="2021-08-18T03:09:42Z" finished-at="2021-08-18T03:09:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidateGmoOnlineLoadedSuccessfully -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterMethod" is-config="true" duration-ms="0" started-at="2021-08-17T04:58:45Z" finished-at="2021-08-17T04:58:45Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterMethod" is-config="true" duration-ms="1" started-at="2021-08-18T03:09:42Z" finished-at="2021-08-18T03:09:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeMethod" is-config="true" duration-ms="1" started-at="2021-08-17T04:58:45Z" finished-at="2021-08-17T04:58:45Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="ValidateOrderQty()[pri:2, instance:com.testNg.TestNg3@1a968a59]" name="ValidateOrderQty" duration-ms="1253" started-at="2021-08-17T04:58:45Z" finished-at="2021-08-17T04:58:46Z">
+        <test-method status="PASS" signature="ValidateOrderQty()[pri:2, instance:com.testNg.TestNg3@1a968a59]" name="ValidateOrderQty" duration-ms="982" started-at="2021-08-18T03:09:42Z" finished-at="2021-08-18T03:09:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidateOrderQty -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterMethod" is-config="true" duration-ms="1" started-at="2021-08-17T04:58:46Z" finished-at="2021-08-17T04:58:47Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2021-08-18T03:09:42Z" finished-at="2021-08-18T03:09:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterMethod" is-config="true" duration-ms="1" started-at="2021-08-18T03:09:43Z" finished-at="2021-08-18T03:09:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="FAIL" signature="ValidateTotalPriceCalculation()[pri:3, instance:com.testNg.TestNg3@1a968a59]" name="ValidateTotalPriceCalculation" duration-ms="355" started-at="2021-08-17T04:58:47Z" finished-at="2021-08-17T04:58:47Z">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2021-08-18T03:09:43Z" finished-at="2021-08-18T03:09:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="FAIL" signature="ValidateTotalPriceCalculation()[pri:3, instance:com.testNg.TestNg3@1a968a59]" name="ValidateTotalPriceCalculation" duration-ms="307" started-at="2021-08-18T03:09:43Z" finished-at="2021-08-18T03:09:43Z">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[The following asserts failed:
@@ -97,23 +101,19 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ValidateTotalPriceCalculation -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="beforeMethod" is-config="true" duration-ms="0" started-at="2021-08-17T04:58:47Z" finished-at="2021-08-17T04:58:47Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterMethod" is-config="true" duration-ms="3" started-at="2021-08-17T04:58:47Z" finished-at="2021-08-17T04:58:47Z">
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterMethod" is-config="true" duration-ms="2" started-at="2021-08-18T03:09:43Z" finished-at="2021-08-18T03:09:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterClass" is-config="true" duration-ms="6" started-at="2021-08-17T04:58:47Z" finished-at="2021-08-17T04:58:47Z">
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterClass" is-config="true" duration-ms="3" started-at="2021-08-18T03:09:43Z" finished-at="2021-08-18T03:09:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterClass -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterTest" is-config="true" duration-ms="0" started-at="2021-08-17T04:58:47Z" finished-at="2021-08-17T04:58:47Z">
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterTest" is-config="true" duration-ms="0" started-at="2021-08-18T03:09:43Z" finished-at="2021-08-18T03:09:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterTest -->
-        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterSuite" is-config="true" duration-ms="0" started-at="2021-08-17T04:58:47Z" finished-at="2021-08-17T04:58:47Z">
+        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.testNg.TestNg3@1a968a59]" name="afterSuite" is-config="true" duration-ms="0" started-at="2021-08-18T03:09:43Z" finished-at="2021-08-18T03:09:43Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- afterSuite -->

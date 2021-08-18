@@ -73,9 +73,9 @@ public class TestNg3 {
 		PlaceOrderUnitPrice = PlaceOrderUnitPrice.substring(2).trim();
 		System.out.println("PlaceOrderUnitPrice: " + PlaceOrderUnitPrice);
 		Float CalCulatedTotalQtyPrice = Float.parseFloat(PlaceOrderUnitPrice) * 4;
-		SoftAssert obj = new SoftAssert();
+		SoftAssert SoftAssertobj = new SoftAssert();
 		System.out.println("CalCulatedTotalQtyPrice: " + CalCulatedTotalQtyPrice);
-		obj.assertEquals(CalCulatedTotalQtyPrice, QtyTotalPrice);
+		SoftAssertobj.assertEquals(CalCulatedTotalQtyPrice, QtyTotalPrice);
 		String SalesTax = driver.findElement(By.xpath("//tbody/tr[4]/td[2]")).getText();
 		SalesTax = SalesTax.substring(2).trim();
 		String Shipping_Handling = driver.findElement(By.xpath("//tbody/tr[5]/td[2]")).getText();
@@ -89,7 +89,7 @@ public class TestNg3 {
 		System.out.println("GrandTotal: " + GrandTotal);
 		Float Grand_Total=Float.parseFloat(GrandTotal);
 		Assert.assertEquals(CalCulatedTotalQtyPrice ,Grand_Total);
-		obj.assertAll();
+		SoftAssertobj.assertAll();
 	}
 
 	@BeforeMethod
@@ -129,6 +129,7 @@ public class TestNg3 {
 		System.out.println("inside beforeSuite");
 
 		WebDriverManager.chromedriver().setup();
+		
 		driver = new ChromeDriver();
 		driver.get("http://demo.borland.com/gmopost/");
 		driver.manage().window().maximize();
