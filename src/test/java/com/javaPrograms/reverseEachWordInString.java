@@ -23,9 +23,7 @@ public class reverseEachWordInString {
 			reverseWord=reverseWord+obj.toString()+" ";
 			System.out.println(reverseWord);
 		}
-		
 		//System.out.println(StringFormatter.reverseWord(str));  
-		
 	}
 
 }

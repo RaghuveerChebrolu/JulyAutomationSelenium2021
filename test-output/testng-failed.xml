@@ -9,11 +9,11 @@
           <include name="afterSuite"/>
           <include name="beforeTest"/>
           <include name="afterTest"/>
+          <include name="ValidateAlerts"/>
           <include name="afterClass"/>
           <include name="beforeMethod"/>
           <include name="beforeClass"/>
           <include name="afterMethod"/>
-          <include name="ValidateTotalPriceCalculation"/>
         </methods>
       </class> <!-- com.testNg.TestNg3 -->
     </classes>

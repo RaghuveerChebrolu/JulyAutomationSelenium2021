@@ -9,11 +9,22 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
@@ -27,6 +38,7 @@ public class TestNg3 {
 	@Test(priority = 1)
 	public void ValidateGmoOnlineLoadedSuccessfully() {
 		System.out.println("inside testCase1");
+		waitForPageToLoad();
 		String ActualTitle = driver.getTitle();
 		System.out.println(ActualTitle);
 		String ExpectedTitle = "OnLine Catalog";
@@ -39,6 +51,7 @@ public class TestNg3 {
 	public void ValidateEnterGMOOnline() {
 		System.out.println("inside testCase2");
 		driver.findElement(By.name("bSubmit")).click();
+		waitForPageToLoad();
 		String ActualTitleText = driver.findElement(By.xpath("//h1[contains(text(),'OnLine Catalog')]")).getText();
 		System.out.println("TitleText: " + ActualTitleText);
 		String ExpectedTitle = "OnLine Catalog";
@@ -48,6 +61,7 @@ public class TestNg3 {
 
 	@Test(priority = 2)
 	public void ValidateOrderQty() {
+		waitForPageToLoad();
 		driver.findElement(By.xpath("//strong[contains(text(),'Frame Backpack')]/../../following-sibling::td/h1/input"))
 				.sendKeys("4");
 		String UnitPrice = driver
@@ -65,6 +79,7 @@ public class TestNg3 {
 	@Test(priority = 3)
 	public void ValidateTotalPriceCalculation() {
 		System.out.println("inside ValidateTotalPrice");
+		waitForPageToLoad();
 		String QtyTotalPrice = driver.findElement(By.xpath("//tbody/tr[2]/td[5]")).getText();
 		System.out.println("QtyTotalPrice: " + QtyTotalPrice);
 		QtyTotalPrice = QtyTotalPrice.substring(2).trim();
@@ -89,6 +104,42 @@ public class TestNg3 {
 		System.out.println("GrandTotal: " + GrandTotal);
 		Float Grand_Total=Float.parseFloat(GrandTotal);
 		Assert.assertEquals(CalCulatedTotalQtyPrice ,Grand_Total);
+		SoftAssertobj.assertAll();
+	}
+	
+	@Test(priority=4)
+	public void ValidateAlerts(){
+		System.out.println("inside ValidateAlerts");
+		driver.navigate().to("https://demoqa.com/alerts");
+		waitForPageToLoad();
+		driver.findElement(By.xpath("//button[@id='alertButton']")).click();
+		Alert Obj =driver.switchTo().alert();//NoAlertPresentException - If the dialog cannot be found
+		Obj.accept();
+		//WebElement element = driver.findElement(By.id("confirmButton"));
+		//element.click();
+		driver.findElement(By.id("confirmButton")).click();
+		driver.switchTo().alert();
+		String AlerBoxText = Obj.getText();
+		System.out.println("AlerBoxText: "+AlerBoxText);
+		Obj.dismiss();
+		String ActualMessage= driver.findElement(By.xpath("//*[@id='confirmResult']")).getText();
+		System.out.println("ActualMessage: "+ActualMessage);
+		//String ExpectedMessage ="You selected Ok";
+		SoftAssert SoftAssertobj = new SoftAssert();
+		SoftAssertobj.assertEquals(ActualMessage, "You selected OK");
+		
+		driver.findElement(By.id("promtButton")).click();
+		Obj.sendKeys("Hi How Are You Doing!");
+		Obj.accept();
+		String ActuaAlertboxEnteredText=driver.findElement(By.xpath("//*[@id='promptResult']")).getText();
+		Assert.assertEquals(ActuaAlertboxEnteredText,"You entered Hi How Are You Doing!" );
+		
+		try {
+			takescreeshot(driver);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		SoftAssertobj.assertAll();
 	}
 
@@ -139,6 +190,37 @@ public class TestNg3 {
 	@AfterSuite
 	public void afterSuite() {
 		System.out.println("inside afterSuite");
+	}
+	
+	//helper methods :
+	public void waitForPageToLoad() {
+		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+			}
+		};
+		// explicit wait -> Applicable for one webEllement
+		WebDriverWait wait = new WebDriverWait(driver, 60);//60 seconds 
+		wait.until(pageLoadCondition);
+	}
+	
+	public static String takescreeshot(WebDriver driver) throws Exception {
+		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+		System.out.println(dateName);
+		String destination = System.getProperty("user.dir") + "//src//test//resources//Screenshots//" + dateName + "captured.png";
+		FileUtils.copyFile(source, new File(destination));
+		return destination;
+	}
+	
+	public static String takescreeshot(WebDriver driver, String name) throws Exception {
+		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+		System.out.println(dateName);
+		String destination = System.getProperty("user.dir") + "//src//test//resources//Screenshots//" + dateName + name
+				+ "captured.png";
+		FileUtils.copyFile(source, new File(destination));
+		return destination;
 	}
 
 }
