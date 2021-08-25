@@ -3,6 +3,7 @@ package com.testNg;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.utility.ObjectRepository;
 import com.utility.library;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -52,9 +53,10 @@ public class TestNg4 extends library{
 	@Test(priority = 1)
 	public void ValidateEnterGMOOnline() {
 		System.out.println("inside testCase2");
-		driver.findElement(By.name("bSubmit")).click();
+		
+		driver.findElement(By.name(ObjectRepository.EnterGMOOnlineSubmitbutton)).click();
 		waitForPageToLoad();
-		String ActualTitleText = driver.findElement(By.xpath("//h1[contains(text(),'OnLine Catalog')]")).getText();
+		String ActualTitleText = driver.findElement(By.xpath(ObjectRepository.EnterGMOOnlineText)).getText();
 		System.out.println("TitleText: " + ActualTitleText);
 		String ExpectedTitle = "OnLine Catalog";
 		Assert.assertEquals(ActualTitleText, ExpectedTitle);
@@ -64,7 +66,7 @@ public class TestNg4 extends library{
 	@Test(priority = 2)
 	public void ValidateOrderQty() {
 		waitForPageToLoad();
-		driver.findElement(By.xpath("//strong[contains(text(),'Frame Backpack')]/../../following-sibling::td/h1/input"))
+		driver.findElement(By.xpath(ObjectRepository.QtyFrameBackpack))
 				.sendKeys("4");
 		String UnitPrice = driver
 				.findElement(By
@@ -145,6 +147,22 @@ public class TestNg4 extends library{
 		SoftAssertobj.assertAll();
 	}
 	
+	@Test(priority=5)
+	public void HandlingFrames(){
+		System.out.println("inside HandlingFrames");
+		driver.navigate().to(propObj.getProperty("FramesURL"));
+		waitForPageToLoad();
+		library.SwithToFrameUsingIdOrName("SingleFrame");
+		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hi Inside Single Frame");
+		driver.switchTo().defaultContent();
+		driver.findElement(By.xpath("//a[text()='Iframe with in an Iframe']")).click();
+		//WebElement parentFrameElement=driver.findElement(By.xpath("//*[@id='Multiple']/iframe"));
+		library.SwithToFrameUsingWebElement(driver.findElement(By.xpath("//*[@id='Multiple']/iframe")));
+		WebElement childFrameElement=driver.findElement(By.xpath("//iframe[@src='SingleFrame.html']"));
+		library.SwithToFrameUsingWebElement(childFrameElement);
+		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hi Inside frame with in Frame");
+		driver.switchTo().defaultContent();
+	}
 	
 
 	@BeforeMethod

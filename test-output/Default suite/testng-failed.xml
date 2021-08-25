@@ -10,8 +10,7 @@
           <include name="afterTest"/>
           <include name="beforeSuite"/>
           <include name="afterClass"/>
-          <include name="ValidateAlerts"/>
-          <include name="ValidateTotalPriceCalculation"/>
+          <include name="HandlingFrames"/>
           <include name="beforeClass"/>
           <include name="beforeMethod"/>
           <include name="afterSuite"/>

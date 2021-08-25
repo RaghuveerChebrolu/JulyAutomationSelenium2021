@@ -8,6 +8,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -55,6 +56,13 @@ public class library {
 		driver.get(propObj.getProperty("GmoOnloneURL_SIT"));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	}
+	
+	public static void SwithToFrameUsingIdOrName(String name_id){
+		driver.switchTo().frame(name_id);
+	}
+	public static void SwithToFrameUsingWebElement(WebElement element){
+		driver.switchTo().frame(element);
 	}
 
 }
