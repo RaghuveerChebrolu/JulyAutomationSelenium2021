@@ -3,6 +3,7 @@ package com.testNg;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.utility.ORep;
 import com.utility.ObjectRepository;
 import com.utility.constants;
 import com.utility.library;
@@ -16,6 +17,7 @@ import org.testng.annotations.BeforeClass;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -36,7 +38,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
-public class TestNg4 extends library{
+public class TestNg5 extends library{
 	
 
 	@Test(priority = 0)
@@ -122,7 +124,8 @@ public class TestNg4 extends library{
 		Obj.accept();
 		//WebElement element = driver.findElement(By.id("confirmButton"));
 		//element.click();
-		driver.findElement(By.id("confirmButton")).click();
+		//driver.findElement(By.id("confirmButton")).click();
+		library.findElementByLocator(ORep.AlertconfirmButton).click();
 		driver.switchTo().alert();
 		String AlerBoxText = Obj.getText();
 		System.out.println("AlerBoxText: "+AlerBoxText);
@@ -132,8 +135,8 @@ public class TestNg4 extends library{
 		//String ExpectedMessage ="You selected Ok";
 		SoftAssert SoftAssertobj = new SoftAssert();
 		SoftAssertobj.assertEquals(ActualMessage, "You selected OK");
-		
-		driver.findElement(By.id("promtButton")).click();
+		library.findElementByLocator(ORep.AlertpromtButton).click();
+		//driver.findElement(By.id("promtButton")).click();
 		Obj.sendKeys("Hi How Are You Doing!");
 		Obj.accept();
 		String ActuaAlertboxEnteredText=driver.findElement(By.xpath("//*[@id='promptResult']")).getText();
@@ -163,6 +166,30 @@ public class TestNg4 extends library{
 		library.SwithToFrameUsingWebElement(childFrameElement);
 		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hi Inside frame with in Frame");
 		driver.switchTo().defaultContent();
+	}
+	
+	@Test(priority=6)
+	public void HandlingWindows(){
+		System.out.println("inside HandlingWindows");
+		driver.navigate().to(propObj.getProperty("WindowsURL"));
+		waitForPageToLoad();
+		Set<String> Allwindows = driver.getWindowHandles();
+		
+		for (String SingleWindow:Allwindows){
+			driver.switchTo().window(SingleWindow);
+			String title=driver.getTitle();
+			System.out.println(title);
+			if(title.equals("Tech Mahindra")){
+				driver.manage().window().maximize();
+				driver.close();//closing the current browser
+			}else if(title.equals("Jio")){
+				driver.manage().window().maximize();
+				driver.close();
+			}else if(title.equals("Jobs - Recruitment - Job Search - Employment -Job Vacancies - Naukri.com")){
+			//action 
+			}
+		}
+		//driver.quit();
 	}
 	
 

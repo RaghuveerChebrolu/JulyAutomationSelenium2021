@@ -5,12 +5,15 @@
     <classes>
       <class name="com.testNg.TestNg4">
         <methods>
+          <include name="ValidateGmoOnlineLoadedSuccessfully"/>
           <include name="beforeTest"/>
           <include name="afterMethod"/>
           <include name="afterTest"/>
           <include name="beforeSuite"/>
           <include name="afterClass"/>
           <include name="HandlingFrames"/>
+          <include name="ValidateAlerts"/>
+          <include name="ValidateTotalPriceCalculation"/>
           <include name="beforeClass"/>
           <include name="beforeMethod"/>
           <include name="afterSuite"/>
