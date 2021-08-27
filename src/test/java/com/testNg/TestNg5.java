@@ -17,6 +17,7 @@ import org.testng.annotations.BeforeClass;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -173,6 +174,7 @@ public class TestNg5 extends library{
 		System.out.println("inside HandlingWindows");
 		driver.navigate().to(propObj.getProperty("WindowsURL"));
 		waitForPageToLoad();
+		String parentWindow =driver.getWindowHandle();
 		Set<String> Allwindows = driver.getWindowHandles();
 		
 		for (String SingleWindow:Allwindows){
@@ -189,8 +191,38 @@ public class TestNg5 extends library{
 			//action 
 			}
 		}
+		driver.switchTo().window(parentWindow);
+		
 		//driver.quit();
 	}
+	
+	
+	@Test(priority=7)
+	public void HandlingWebTable(){
+		System.out.println("inside HandlingWebTable");
+		driver.navigate().to(propObj.getProperty("WebTableURL"));
+		waitForPageToLoad();
+		
+		List<WebElement> AllLastNames= driver.findElements(By.xpath("//table[@id='example']/tbody/tr/td[3]"));
+		
+		int size=AllLastNames.size();
+		for (int i=1;i<=size;i++){
+			String LastName =driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[3]")).getText();
+			System.out.println(LastName);
+			//if(LastName.equals("Wagner")){
+				String Salary=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[7]")).getText();
+				String StartDate=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[6]")).getText();
+				String Office=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[5]")).getText();
+				String Position=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[4]")).getText();
+				System.out.println("Salary of "+LastName +" is : "+Salary);
+				System.out.println("Details of employee when last name is provided : LastName :"+LastName
+						+" Salary : "+Salary+" StartDate :" +StartDate+" Position :"+Position+" Office:"+Office );
+				
+			//}
+			
+		}
+	}
+	
 	
 
 	@BeforeMethod
