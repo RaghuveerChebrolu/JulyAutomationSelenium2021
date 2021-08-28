@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,13 +68,28 @@ public class library {
 		driver.switchTo().frame(element);
 	}
 
+	public static void SwithToAlert() {
+		driver.switchTo().alert();
+	}
+
+	public static String SwithToAlertAndReturnText() {
+		Alert obj = driver.switchTo().alert();
+		String TextFromAlertBox = obj.getText();
+		return TextFromAlertBox;
+	}
+	
+	public static void AcceptAlert() {
+		Alert obj1 = driver.switchTo().alert();
+		obj1.accept();
+	}
+
 	public static WebElement findElementByLocator(String ObjRepLocator) {
 
-		System.out.println(ObjRepLocator);
+		//System.out.println(ObjRepLocator);
 		String locator = ObjRepLocator.split("&")[0];
 		String value = ObjRepLocator.split("&")[1];
-		System.out.println("locator: " + locator);
-		System.out.println("value: " + value);
+		//System.out.println("locator: " + locator);
+		//System.out.println("value: " + value);
 		WebElement element = null;
 		By search = null;
 		if (locator.equals("id")) {

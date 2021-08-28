@@ -30,6 +30,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -223,7 +224,21 @@ public class TestNg5 extends library{
 		}
 	}
 	
-	
+	@Test(priority=8)
+	public void MouseOperationRightClick(){
+		System.out.println("inside MouseOperationRightClick");
+		driver.navigate().to(propObj.getProperty("mouseOpeartionRightClick"));
+		waitForPageToLoad();
+		WebElement rightCLick = library.findElementByLocator(ORep.RightClick);
+		Actions obj=new Actions(driver);
+		obj.contextClick(rightCLick).build().perform();
+		library.findElementByLocator(ORep.copy_right_click).click();
+		String AlertText1=library.SwithToAlertAndReturnText();
+		if(AlertText1.contains("copy")){
+			library.AcceptAlert();
+		}
+		
+	}
 
 	@BeforeMethod
 	public void beforeMethod() {

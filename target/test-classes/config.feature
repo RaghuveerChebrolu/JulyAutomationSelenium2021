@@ -1,4 +1,4 @@
-browser=firefox
+browser=chrome
 environment=SIT
 GmoOnloneURL_SIT = https://demo.borland.com/gmopost/
 GmoOnloneURL_UAT = https://demoUAT.borland.com/gmopost/
