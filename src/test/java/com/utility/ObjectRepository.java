@@ -6,4 +6,7 @@ public class ObjectRepository {
 	public static final String QtyFrameBackpack = "//strong[contains(text(),'Frame Backpack')]/../../following-sibling::td/h1/input";
 	
 	public static final String RightCLick = "//span[@class='context-menu-one btn btn-neutral']";
+	public static final String DoubleClick_frame="//iframe";
+
+
 }

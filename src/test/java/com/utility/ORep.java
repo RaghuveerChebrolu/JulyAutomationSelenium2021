@@ -11,6 +11,15 @@ public class ORep {
 	public static final String RightClick = constants.xpath+"&"+"//span[@class='context-menu-one btn btn-neutral']";
 	
 	public static final String copy_right_click = constants.xpath+"&"+"//span[text()='Copy']";
+	public static final String DoubleClick_frame=constants.xpath+"&"+"//iframe";
+	public static final String Double_Click=constants.xpath+"&"+"//span[text()='Double click the block']/preceding-sibling::div";
+	
+	public static final String DragAndDropFrame=constants.xpath+"&"+"//iframe[@class='demo-frame']";
+	public static final String draggable=constants.ID+"&"+"draggable";
+	public static final String droppable=constants.ID+"&"+"droppable";
+	public static final String TextDrop=constants.xpath+"&"+"//div[@id='droppable']/p";
+	
+	
 	
 	
 }

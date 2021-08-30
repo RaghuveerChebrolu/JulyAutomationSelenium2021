@@ -231,12 +231,61 @@ public class TestNg5 extends library{
 		waitForPageToLoad();
 		WebElement rightCLick = library.findElementByLocator(ORep.RightClick);
 		Actions obj=new Actions(driver);
-		obj.contextClick(rightCLick).build().perform();
+		//obj.contextClick(rightCLick).build().perform();
+		library.javascriptExecutorScroolIntoViewAndContextClick(rightCLick, obj);
 		library.findElementByLocator(ORep.copy_right_click).click();
 		String AlertText1=library.SwithToAlertAndReturnText();
 		if(AlertText1.contains("copy")){
 			library.AcceptAlert();
 		}
+		
+	}
+	
+	@Test(priority=9)
+	public void MouseOperationDoubleCLick(){
+		System.out.println("inside MouseOperationDoubleCLick");
+		driver.navigate().to(propObj.getProperty("mouseOpeartionDoubleClick"));
+		waitForPageToLoad();
+		//JavascriptExecutor js = (JavascriptExecutor)driver;
+		//js.executeScript("window.scrollBy(0,500)");
+
+		// js.executeScript("window.scrollBy(0,500)"); //for scrolling
+		// vertically down
+		// js.executeScript("window.scrollBy(0,-500)");//for scrolling
+		// vertically up
+		// js.executeScript("window.scrollBy(1000,0)");////for scrolling
+		// horizontally right side
+		// js.executeScript("window.scrollBy(-400,0)");////for scrolling
+		// horizontally left side
+		// js.executeScript("window.scrollTo(document.body.scrollHeight,0)");//to
+		// scroll vertically up completely
+		// js.executeScript("0,window.scrollTo(document.body.scrollHeight)");//to
+		// scroll vertically down completely
+		// js.executeScript("document.querySelector(scroll).scrollLeft=1000");
+		
+		WebElement Element=library.findElementByLocator(ORep.DoubleClick_frame);
+		library.SwithToFrameUsingWebElement(Element);
+		
+		WebElement Ele=library.findElementByLocator(ORep.Double_Click);
+		Actions obj = new Actions(driver); 
+		library.javascriptExecutorScroolIntoViewAndDoubleClick(Ele, obj);
+		
+	}
+	
+	@Test(priority=10)
+	public void MouseOperationDragAndDrop(){
+		System.out.println("inside MouseOperationDragAndDrop");
+		driver.navigate().to(propObj.getProperty("mouseOperationDragAndDrop"));
+		waitForPageToLoad();
+		
+		WebElement frame = library.findElementByLocator(ORep.DragAndDropFrame);
+		library.SwithToFrameUsingWebElement(frame);
+		
+		WebElement source=library.findElementByLocator(ORep.draggable);
+		WebElement target=library.findElementByLocator(ORep.droppable);
+		library.DragAndDrop(source, target);
+		String droppedText=library.findElementByLocator(ORep.TextDrop).getText();
+		Assert.assertEquals(droppedText, "Dropped!");
 		
 	}
 

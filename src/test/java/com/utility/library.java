@@ -9,12 +9,14 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.opera.OperaDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -111,5 +113,30 @@ public class library {
 		}
 		return driver.findElement(search);
 	}
+	
+	public static void javascriptExecutorScroolIntoView(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView()", element);
+	}
 
+	public static void javascriptExecutorScroolIntoViewAndDoubleClick(WebElement element, Actions obj) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView()", element);
+		obj.doubleClick(element).build().perform();
+	}
+	
+	public static void javascriptExecutorScroolIntoViewAndContextClick(WebElement element, Actions obj) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView()", element);
+		obj.contextClick(element).build().perform();
+	}
+	public static void DragAndDrop(WebElement source, WebElement target) {
+		Actions obj = new Actions(driver);
+		obj.dragAndDrop(source, target).build().perform();
+		//obj.clickAndHold(source).build().perform();
+		//obj.moveToElement(target).build().perform();
+				
+	}
+
+	
 }
