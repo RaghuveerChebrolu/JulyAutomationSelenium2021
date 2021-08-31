@@ -6,8 +6,8 @@
       <class name="com.testNg.TestNg5">
         <methods>
           <include name="afterClass"/>
-          <include name="MouseOperationRightClick"/>
           <include name="beforeSuite"/>
+          <include name="ValidateFileDownload"/>
           <include name="afterTest"/>
           <include name="beforeTest"/>
           <include name="afterMethod"/>

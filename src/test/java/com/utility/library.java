@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -13,11 +15,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -43,7 +48,18 @@ public class library {
 		System.out.println("browser: " + browser);
 		if (browser.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			ChromeOptions objChromeOptions = new ChromeOptions();
+			objChromeOptions.setAcceptInsecureCerts(true);//accept ssl certificates
+			Map<String,Object> chromePrefs = new HashMap<String,Object>();
+			chromePrefs.put("profile.default_content_settings.popups", 0);
+			chromePrefs.put("download.prompt_for_download", false);
+			chromePrefs.put("download.default_directory", System.getProperty("user.dir"));
+			objChromeOptions.setExperimentalOption("prefs", chromePrefs);
+			driver = new ChromeDriver(objChromeOptions);
+			DesiredCapabilities ObjDesiredCap = DesiredCapabilities.chrome();
+			ObjDesiredCap.setCapability(ChromeOptions.CAPABILITY, objChromeOptions);
+			ObjDesiredCap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			
 		} else if (browser.equals("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
@@ -117,6 +133,13 @@ public class library {
 	public static void javascriptExecutorScroolIntoView(WebElement element) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView()", element);
+	}
+	
+	public static void javascriptExecutorScroolIntoViewAndClick(WebElement element) {
+		Actions obj = new Actions(driver);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView()", element);
+		obj.click(element).build().perform();
 	}
 
 	public static void javascriptExecutorScroolIntoViewAndDoubleClick(WebElement element, Actions obj) {

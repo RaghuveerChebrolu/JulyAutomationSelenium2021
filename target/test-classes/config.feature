@@ -10,6 +10,7 @@ mouseOpeartionRightClick= http://swisnl.github.io/jQuery-contextMenu/demo.html
 mouseOpeartionDoubleClick = https://api.jquery.com/dblclick/
 mouseOperationDragAndDrop = https://jqueryui.com/droppable/
 FileUpload = http://demo.automationtesting.in/FileUpload.html
+FileDownload = https://file-examples.com/index.php/sample-documents-download/sample-doc-download./
 AutomationRegister = http://demo.automationtesting.in/Register.html
 webtableLastNames=Williamson,Nash
 BrokenLinks = https://demoqa.com/broken

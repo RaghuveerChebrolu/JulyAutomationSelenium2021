@@ -14,6 +14,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -289,6 +297,69 @@ public class TestNg5 extends library{
 		
 	}
 
+	@Test(priority=11)
+	public void validateFileUpload() throws AWTException, InterruptedException{
+		System.out.println("inside FileUpload");
+		driver.navigate().to(propObj.getProperty("FileUpload"));
+		waitForPageToLoad();
+		WebElement element = library.findElementByLocator(ORep.FileUpload);
+		library.javascriptExecutorScroolIntoViewAndClick(element);
+		//File Obj=new File(System.getProperty("user.dir"+"//src/test//resources/Sample.jpg"));
+		
+		StringSelection objStringSelection = new StringSelection(
+				System.getProperty("user.dir") + "\\src\\test\\resources\\Sample.jpg");
+		Clipboard objClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		objClipboard.setContents(objStringSelection, null);
+		try {
+			Transferable objTransferable = objClipboard.getContents(null);
+			if (objTransferable.isDataFlavorSupported(DataFlavor.stringFlavor))
+				System.out.println(objTransferable.getTransferData(DataFlavor.stringFlavor));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Robot objRobot = new Robot();
+		objRobot.delay(250);
+		objRobot.keyPress(KeyEvent.VK_ENTER);
+		objRobot.keyRelease(KeyEvent.VK_ENTER);
+		Thread.sleep(2000);
+		objRobot.keyPress(KeyEvent.VK_CONTROL);
+		objRobot.keyPress(KeyEvent.VK_V);
+		Thread.sleep(2000);
+		objRobot.keyRelease(KeyEvent.VK_V);
+		objRobot.keyRelease(KeyEvent.VK_CONTROL);
+		Thread.sleep(2000);
+		objRobot.keyPress(KeyEvent.VK_ENTER);
+		objRobot.keyRelease(KeyEvent.VK_ENTER);
+		Thread.sleep(2000);
+
+		
+	}
+	
+	@Test(priority=12)
+	public void ValidateFileDownload() throws InterruptedException{
+		System.out.println("inside ValidateFileDownload");
+		driver.navigate().to(propObj.getProperty("FileDownload"));
+		waitForPageToLoad();
+		library.findElementByLocator(ORep.FileDownload).click();
+		 Thread.sleep(8000);
+		File objFile= new File(System.getProperty("user.dir"));
+		File []listOfFiles = objFile.listFiles();
+		boolean fileFound = false;
+		File obj_File=null;
+		for(File IndividualFile:listOfFiles){
+			String FileName=IndividualFile.getName();
+			System.out.println(FileName);
+			if(FileName.contains("file-sample")){
+				fileFound=true;
+				obj_File= new File(FileName);
+			}
+		}
+		Assert.assertTrue(fileFound, "File Downloaded Not Found");
+		obj_File.deleteOnExit();
+		
+	}
+	
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("inside beforeMethod");

@@ -19,7 +19,8 @@ public class ORep {
 	public static final String droppable=constants.ID+"&"+"droppable";
 	public static final String TextDrop=constants.xpath+"&"+"//div[@id='droppable']/p";
 	
+	public static final String FileUpload=constants.xpath+"&"+"//input[@id='input-4']/preceding-sibling::span";
 	
-	
+	public static final String FileDownload=constants.xpath+"&"+"//a[@download='file-sample_500kB.doc']";
 	
 }
