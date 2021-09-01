@@ -7,12 +7,14 @@
         <methods>
           <include name="afterClass"/>
           <include name="beforeSuite"/>
-          <include name="ValidateFileDownload"/>
           <include name="afterTest"/>
+          <include name="ValidateGmoOnlineLoadedSuccessfully"/>
           <include name="beforeTest"/>
           <include name="afterMethod"/>
           <include name="afterSuite"/>
+          <include name="ValidateTotalPriceCalculation"/>
           <include name="beforeClass"/>
+          <include name="ValidateAlerts"/>
           <include name="beforeMethod"/>
         </methods>
       </class> <!-- com.testNg.TestNg5 -->

@@ -3,6 +3,7 @@ package com.testNg;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.Status;
 import com.utility.ORep;
 import com.utility.ObjectRepository;
 import com.utility.constants;
@@ -42,6 +43,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
@@ -54,6 +56,7 @@ public class TestNg5 extends library{
 	@Test(priority = 0)
 	public void ValidateGmoOnlineLoadedSuccessfully() {
 		System.out.println("inside testCase1");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		waitForPageToLoad();
 		String ActualTitle = driver.getTitle();
 		System.out.println(ActualTitle);
@@ -66,7 +69,7 @@ public class TestNg5 extends library{
 	@Test(priority = 1)
 	public void ValidateEnterGMOOnline() {
 		System.out.println("inside testCase2");
-		
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.findElement(By.name(ObjectRepository.EnterGMOOnlineSubmitbutton)).click();
 		waitForPageToLoad();
 		String ActualTitleText = driver.findElement(By.xpath(ObjectRepository.EnterGMOOnlineText)).getText();
@@ -78,6 +81,7 @@ public class TestNg5 extends library{
 
 	@Test(priority = 2)
 	public void ValidateOrderQty() {
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		waitForPageToLoad();
 		driver.findElement(By.xpath(ObjectRepository.QtyFrameBackpack))
 				.sendKeys("4");
@@ -96,6 +100,7 @@ public class TestNg5 extends library{
 	@Test(priority = 3)
 	public void ValidateTotalPriceCalculation() {
 		System.out.println("inside ValidateTotalPrice");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		waitForPageToLoad();
 		String QtyTotalPrice = driver.findElement(By.xpath("//tbody/tr[2]/td[5]")).getText();
 		System.out.println("QtyTotalPrice: " + QtyTotalPrice);
@@ -127,6 +132,7 @@ public class TestNg5 extends library{
 	@Test(priority=4)
 	public void ValidateAlerts(){
 		System.out.println("inside ValidateAlerts");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("AlertURL"));
 		waitForPageToLoad();
 		driver.findElement(By.xpath("//button[@id='alertButton']")).click();
@@ -164,6 +170,7 @@ public class TestNg5 extends library{
 	@Test(priority=5)
 	public void HandlingFrames(){
 		System.out.println("inside HandlingFrames");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("FramesURL"));
 		waitForPageToLoad();
 		library.SwithToFrameUsingIdOrName("SingleFrame");
@@ -181,6 +188,7 @@ public class TestNg5 extends library{
 	@Test(priority=6)
 	public void HandlingWindows(){
 		System.out.println("inside HandlingWindows");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("WindowsURL"));
 		waitForPageToLoad();
 		String parentWindow =driver.getWindowHandle();
@@ -209,6 +217,7 @@ public class TestNg5 extends library{
 	@Test(priority=7)
 	public void HandlingWebTable(){
 		System.out.println("inside HandlingWebTable");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("WebTableURL"));
 		waitForPageToLoad();
 		
@@ -235,6 +244,7 @@ public class TestNg5 extends library{
 	@Test(priority=8)
 	public void MouseOperationRightClick(){
 		System.out.println("inside MouseOperationRightClick");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("mouseOpeartionRightClick"));
 		waitForPageToLoad();
 		WebElement rightCLick = library.findElementByLocator(ORep.RightClick);
@@ -252,6 +262,7 @@ public class TestNg5 extends library{
 	@Test(priority=9)
 	public void MouseOperationDoubleCLick(){
 		System.out.println("inside MouseOperationDoubleCLick");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("mouseOpeartionDoubleClick"));
 		waitForPageToLoad();
 		//JavascriptExecutor js = (JavascriptExecutor)driver;
@@ -283,6 +294,7 @@ public class TestNg5 extends library{
 	@Test(priority=10)
 	public void MouseOperationDragAndDrop(){
 		System.out.println("inside MouseOperationDragAndDrop");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("mouseOperationDragAndDrop"));
 		waitForPageToLoad();
 		
@@ -300,6 +312,7 @@ public class TestNg5 extends library{
 	@Test(priority=11)
 	public void validateFileUpload() throws AWTException, InterruptedException{
 		System.out.println("inside FileUpload");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("FileUpload"));
 		waitForPageToLoad();
 		WebElement element = library.findElementByLocator(ORep.FileUpload);
@@ -339,6 +352,7 @@ public class TestNg5 extends library{
 	@Test(priority=12)
 	public void ValidateFileDownload() throws InterruptedException{
 		System.out.println("inside ValidateFileDownload");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("FileDownload"));
 		waitForPageToLoad();
 		library.findElementByLocator(ORep.FileDownload).click();
@@ -366,15 +380,32 @@ public class TestNg5 extends library{
 		// System.out.println(ActualTitle);
 
 	}
-
+	
 	@AfterMethod
-	public void afterMethod() {
+	public void afterMethod(ITestResult Result) {
 		System.out.println("inside afterMethod");
+		if (Result.getStatus() == ITestResult.FAILURE) {
+			ExtTest.log(Status.FAIL, "TestCase failed is :" + Result.getName());
+			ExtTest.log(Status.FAIL, "TestCase failed is :" + Result.getThrowable());
+			try {
+				String screencastPath = library.takescreeshot(driver, Result.getName());
+				ExtTest.addScreenCaptureFromPath(screencastPath);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (Result.getStatus() == ITestResult.SUCCESS) {
+			ExtTest.log(Status.PASS, "TestCase Pass is :" + Result.getName());
+		} else if (Result.getStatus() == ITestResult.SKIP) {
+			ExtTest.log(Status.SKIP, "TestCase Skipp is :" + Result.getName());
+		}
+
 	}
 
 	@BeforeClass
 	public void beforeClass() {
 		System.out.println("inside beforeClass");
+		library.StartExtentReport();
 	}
 
 	@AfterClass
@@ -391,6 +422,7 @@ public class TestNg5 extends library{
 	@AfterTest
 	public void afterTest() {
 		System.out.println("inside afterTest");
+		ExtReport.flush();// don't forget to give this in order to generate report
 	}
 
 	@BeforeSuite
@@ -409,35 +441,6 @@ public class TestNg5 extends library{
 		System.out.println("inside afterSuite");
 	}
 	
-	//helper methods :
-	public void waitForPageToLoad() {
-		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
-			public Boolean apply(WebDriver driver) {
-				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-			}
-		};
-		// explicit wait -> Applicable for one webEllement
-		WebDriverWait wait = new WebDriverWait(driver, 60);//60 seconds 
-		wait.until(pageLoadCondition);
-	}
 	
-	public static String takescreeshot(WebDriver driver) throws Exception {
-		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		System.out.println(dateName);
-		String destination = System.getProperty("user.dir") + "//src//test//resources//Screenshots//" + dateName + "captured.png";
-		FileUtils.copyFile(source, new File(destination));
-		return destination;
-	}
-	
-	public static String takescreeshot(WebDriver driver, String name) throws Exception {
-		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		System.out.println(dateName);
-		String destination = System.getProperty("user.dir") + "//src//test//resources//Screenshots//" + dateName + name
-				+ "captured.png";
-		FileUtils.copyFile(source, new File(destination));
-		return destination;
-	}
 
 }

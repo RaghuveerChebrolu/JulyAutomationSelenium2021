@@ -4,14 +4,19 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,6 +28,13 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.configuration.Theme;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -30,6 +42,32 @@ public class library {
 	public static WebDriver driver;
 	public static Properties propObj = new Properties();
 
+	/*
+	 * ExtentHtmlReporter : responsible for look and feel of the report ,we can
+	 * specify the report name , document title , theme of the report
+	 * 
+	 * ExtentReports : used to create entries in your report , create test cases
+	 * in report , who executed the test case, environment name , browser
+	 * 
+	 * ExtentTest : update pass fail and skips and logs the test cases results
+	 */
+	public static ExtentHtmlReporter htmlReporter;
+	public static ExtentReports ExtReport;
+	public static ExtentTest ExtTest;
+	
+	public static void StartExtentReport() {
+		htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/test-output/ExtentReportV4.html");
+		htmlReporter.config().setDocumentTitle("AutomationReport");
+		htmlReporter.config().setReportName("Selenium");
+		htmlReporter.config().setTheme(Theme.STANDARD);
+		ExtReport = new ExtentReports();
+		ExtReport.attachReporter(htmlReporter);
+		ExtReport.setSystemInfo("Host Name", "LocalHost");
+		ExtReport.setSystemInfo("user", "Trainer:");
+		ExtReport.setSystemInfo("Environemnet", (String) propObj.get("environment"));
+		ExtReport.setSystemInfo("Browser", (String) propObj.get("browser"));
+	}
+	
 	public static void ReadPropertyFile() throws Exception {
 		System.out.println(System.getProperty("user.dir"));
 		FileInputStream ObjInputStream;
@@ -41,6 +79,17 @@ public class library {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void waitForPageToLoad() {
+		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+			}
+		};
+		// explicit wait -> Applicable for one webEllement
+		WebDriverWait wait = new WebDriverWait(driver, 60);//60 seconds 
+		wait.until(pageLoadCondition);
 	}
 
 	public static void LaunchBrowser() {
@@ -161,5 +210,24 @@ public class library {
 				
 	}
 
+	public static String takescreeshot(WebDriver driver) throws Exception {
+		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+		System.out.println(dateName);
+		String destination = System.getProperty("user.dir") + "//src//test//resources//screenshots//" + dateName
+				+ "captured.png";
+		FileUtils.copyFile(source, new File(destination));
+		return destination;
+	}
+
+	public static String takescreeshot(WebDriver driver, String name) throws Exception {
+		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+		System.out.println(dateName);
+		String destination = System.getProperty("user.dir") + "//src//test//resources//ScreenShots//" + dateName + name
+				+ "captured.png";
+		FileUtils.copyFile(source, new File(destination));
+		return destination;
+	}
 	
 }
