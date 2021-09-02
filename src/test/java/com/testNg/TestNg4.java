@@ -215,35 +215,6 @@ public class TestNg4 extends library{
 		System.out.println("inside afterSuite");
 	}
 	
-	//helper methods :
-	public void waitForPageToLoad() {
-		ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
-			public Boolean apply(WebDriver driver) {
-				return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-			}
-		};
-		// explicit wait -> Applicable for one webEllement
-		WebDriverWait wait = new WebDriverWait(driver, 60);//60 seconds 
-		wait.until(pageLoadCondition);
-	}
 	
-	public static String takescreeshot(WebDriver driver) throws Exception {
-		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		System.out.println(dateName);
-		String destination = System.getProperty("user.dir") + "//src//test//resources//Screenshots//" + dateName + "captured.png";
-		FileUtils.copyFile(source, new File(destination));
-		return destination;
-	}
-	
-	public static String takescreeshot(WebDriver driver, String name) throws Exception {
-		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		System.out.println(dateName);
-		String destination = System.getProperty("user.dir") + "//src//test//resources//Screenshots//" + dateName + name
-				+ "captured.png";
-		FileUtils.copyFile(source, new File(destination));
-		return destination;
-	}
 
 }
