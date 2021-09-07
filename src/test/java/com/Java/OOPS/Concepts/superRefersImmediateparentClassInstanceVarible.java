@@ -1,4 +1,4 @@
-package com.Java.Oops.Concepts;
+package com.Java.OOPS.Concepts;
 
 /*Super Keyword in Java
 The super keyword in Java is a reference variable which is used to refer immediate parent class object.

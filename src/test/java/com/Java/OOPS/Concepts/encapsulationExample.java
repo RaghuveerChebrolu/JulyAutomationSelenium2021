@@ -1,6 +1,7 @@
 package com.Java.OOPS.Concepts;
 
 public class encapsulationExample {
+	//wrapping up of code and data together is called encapsulation
 	// private data member
 	private String name;
 

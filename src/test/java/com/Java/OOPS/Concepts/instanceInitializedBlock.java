@@ -8,7 +8,7 @@ class A123 {
 
 public class instanceInitializedBlock extends A123 {
 	instanceInitializedBlock() {
-		super();
+		//super();
 		System.out.println("child class constructor invoked");
 	}
 

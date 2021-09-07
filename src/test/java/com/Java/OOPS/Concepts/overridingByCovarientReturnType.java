@@ -21,6 +21,6 @@ public class overridingByCovarientReturnType extends ABC {
 }
 
 
-/*Note : As you can see in the above example, the return type of the get() method of A class is A but 
+/*Note : As you can see in the above example, the return type of the get() method of ABC class is A but 
 		the return type of the get() method of overridingByCovarientReturnType class is overridingByCovarientReturnType. 
 		Both methods have different return type but it is method overriding. This is known as covariant return type.*/

@@ -17,15 +17,15 @@ class SBI23451 extends Bank {
 }
 
 class ICICI extends Bank {
-	/*int getRateOfInterest() {
+	int getRateOfInterest() {
 		return 7;
-	}*/
+	}
 }
 
 class AXIS extends Bank {
-	int getRateOfInterest() {
+	/*int getRateOfInterest() {
 		return 9;
-	}
+	}*/
 }
 
 // Test class to create objects and call the methods

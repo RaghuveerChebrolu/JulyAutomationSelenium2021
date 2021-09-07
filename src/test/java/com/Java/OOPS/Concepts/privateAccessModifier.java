@@ -12,7 +12,7 @@ class A2211 {
 
 public class privateAccessModifier {
 	public static void main(String args[]) {
-		//A2211 obj = new A2211();
+		A2211 obj = new A2211();
 		//System.out.println(obj.data);// Compile Time Error
 		//obj.msg();// Compile Time Error
 	}

@@ -1,6 +1,6 @@
 package com.Java.OOPS.Concepts;
 
-import com.Java.Programs.C;
+import com.Javabasics.C;
 
 class publicAccessModifier {
 	public static void main(String args[]) {

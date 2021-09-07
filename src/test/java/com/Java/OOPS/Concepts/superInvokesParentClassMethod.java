@@ -1,4 +1,4 @@
-package com.Java.Oops.Concepts;
+package com.Java.OOPS.Concepts;
 
 class Animal567 {
 	void eat() {

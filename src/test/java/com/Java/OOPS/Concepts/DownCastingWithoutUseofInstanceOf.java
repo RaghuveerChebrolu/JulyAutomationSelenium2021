@@ -10,6 +10,7 @@ public class DownCastingWithoutUseofInstanceOf extends Animal365723 {
 	}
 
 	public static void main(String[] args) {
+		//Animal365723 a=new Animal365723(); 
 		Animal365723 a = new DownCastingWithoutUseofInstanceOf();
 		DownCastingWithoutUseofInstanceOf.method(a);
 	}
