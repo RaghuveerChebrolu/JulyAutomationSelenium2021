@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -177,6 +180,54 @@ public class library {
 			search = By.tagName(value);
 		}
 		return driver.findElement(search);
+	}
+	
+	public static List<WebElement> findElementsByLocator(String ObjRepLocator) {
+
+		//System.out.println(ObjRepLocator);
+		String locator = ObjRepLocator.split("&")[0];
+		String value = ObjRepLocator.split("&")[1];
+		//System.out.println("locator: " + locator);
+		//System.out.println("value: " + value);
+		WebElement element = null;
+		By search = null;
+		if (locator.equals("id")) {
+			search = By.id(value);
+		} else if (locator.equals("name")) {
+			search = By.name(value);
+		} else if (locator.equals("className")) {
+			search = By.className(value);
+		} else if (locator.equals("xpath")) {
+			search = By.xpath(value);
+		} else if (locator.equals("cssSelector")) {
+			search = By.cssSelector(value);
+		} else if (locator.equals("linkText")) {
+			search = By.linkText(value);
+		} else if (locator.equals("partialLinkText")) {
+			search = By.partialLinkText(value);
+		} else if (locator.equals("tagName")) {
+			search = By.tagName(value);
+		}
+		return driver.findElements(search);
+	}
+	
+	public static void verifyinglinks(String Url) throws Exception {
+		try {
+			URL obj = new URL(Url);
+			HttpURLConnection objHttpConnection = (HttpURLConnection) obj.openConnection();
+			objHttpConnection.connect();
+			int ResponseCode = objHttpConnection.getResponseCode();
+			if (ResponseCode >= 400 && ResponseCode < 600) {
+				System.out.println(Url + ": " + "ResponseCode:" + ResponseCode + " is not a valid Link");
+			} else if (ResponseCode >= 200 && ResponseCode < 400) {
+				System.out.println(Url + ": " + "ResponseCode:" + ResponseCode + " is a valid Link");
+			}
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	public static void javascriptExecutorScroolIntoView(WebElement element) {

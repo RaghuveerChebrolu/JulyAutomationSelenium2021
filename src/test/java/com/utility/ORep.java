@@ -23,4 +23,6 @@ public class ORep {
 	
 	public static final String FileDownload=constants.xpath+"&"+"//a[@download='file-sample_500kB.doc']";
 	
+	public static final String Links=constants.tagName+"&"+"a";
+	
 }

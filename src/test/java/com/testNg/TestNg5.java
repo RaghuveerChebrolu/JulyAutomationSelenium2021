@@ -24,13 +24,20 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -51,8 +58,8 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
 public class TestNg5 extends library{
-	
-
+	HashMap<String,String> TestData = new HashMap<String,String>(); 
+			
 	@Test(priority = 0)
 	public void ValidateGmoOnlineLoadedSuccessfully() {
 		System.out.println("inside testCase1");
@@ -374,6 +381,83 @@ public class TestNg5 extends library{
 		
 	}
 	
+	@Test(priority=13)
+	public void ValidateBrokenLinks(){
+		System.out.println("inside ValidateFileDownload");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		driver.navigate().to(propObj.getProperty("BrokenLinks"));
+		waitForPageToLoad();
+		List<WebElement> AllLinks = library.findElementsByLocator(ORep.Links);
+		for (int i = 1; i < AllLinks.size(); i++) {
+			WebElement IndividualLink = AllLinks.get(i);
+			String IndividualLinkUrl = IndividualLink.getAttribute("href");
+			try {
+				library.verifyinglinks(IndividualLinkUrl);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Test(priority=14)
+	public void ValidateDataDriven() throws IOException{
+		System.out.println("inside ValidateFileDownload");
+		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		driver.navigate().to(propObj.getProperty("AutomationRegister"));
+		waitForPageToLoad();
+		try {
+			FileInputStream ObjFileInputStream = new FileInputStream (new File(System.getProperty("user.dir")+"//src/test/resources//AutomationDemoSIte.xlsx"));
+			XSSFWorkbook objXSSFWorkbook =  new XSSFWorkbook(ObjFileInputStream);
+			XSSFSheet objXSSFSheet = objXSSFWorkbook.getSheet("TestData");
+			int AllRows=objXSSFSheet.getLastRowNum();
+			for (int rowNumber=1 ; rowNumber<=AllRows;rowNumber++){
+				TestData= readExcelFile(objXSSFSheet,rowNumber);
+				System.out.println(TestData.get("FirstName"));
+				System.out.println(TestData.get("LastName"));
+				System.out.println(TestData.get("Address"));
+				
+			}
+		
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public HashMap<String, String> readExcelFile(XSSFSheet objXSSFSheet, int rowNumber) {
+		DataFormatter Format = new DataFormatter();
+		TestData.put("RunMode", objXSSFSheet.getRow(rowNumber).getCell(0).getStringCellValue());
+		TestData.put("TestCaseName", objXSSFSheet.getRow(rowNumber).getCell(1).getStringCellValue());
+		TestData.put("FirstName", objXSSFSheet.getRow(rowNumber).getCell(2).getStringCellValue());
+		TestData.put("LastName", objXSSFSheet.getRow(rowNumber).getCell(3).getStringCellValue());
+		TestData.put("Address", objXSSFSheet.getRow(rowNumber).getCell(4).getStringCellValue());
+		TestData.put("EmailAddress", objXSSFSheet.getRow(rowNumber).getCell(5).getStringCellValue());
+
+		String PhoneNumber = Format.formatCellValue(objXSSFSheet.getRow(rowNumber).getCell(6));
+		TestData.put("PhoneNumber", PhoneNumber);
+
+		TestData.put("Gender", objXSSFSheet.getRow(rowNumber).getCell(7).getStringCellValue());
+		TestData.put("Hobbies", objXSSFSheet.getRow(rowNumber).getCell(8).getStringCellValue());
+		TestData.put("Languages", objXSSFSheet.getRow(rowNumber).getCell(9).getStringCellValue());
+		TestData.put("Skills", objXSSFSheet.getRow(rowNumber).getCell(10).getStringCellValue());
+		TestData.put("Country", objXSSFSheet.getRow(rowNumber).getCell(11).getStringCellValue());
+		TestData.put("SelectCountry", objXSSFSheet.getRow(rowNumber).getCell(12).getStringCellValue());
+
+		String Year = Format.formatCellValue(objXSSFSheet.getRow(rowNumber).getCell(13));
+		TestData.put("DOB_YY", Year);
+
+		TestData.put("DOB_MM", objXSSFSheet.getRow(rowNumber).getCell(14).getStringCellValue());
+
+		String Day = Format.formatCellValue(objXSSFSheet.getRow(rowNumber).getCell(15));
+		TestData.put("DOB_DD", Day);
+
+		TestData.put("Password", objXSSFSheet.getRow(rowNumber).getCell(16).getStringCellValue());
+		TestData.put("confirmPassword", objXSSFSheet.getRow(rowNumber).getCell(17).getStringCellValue());
+		return TestData;
+	}
+
 	@BeforeMethod
 	public void beforeMethod() {
 		System.out.println("inside beforeMethod");
