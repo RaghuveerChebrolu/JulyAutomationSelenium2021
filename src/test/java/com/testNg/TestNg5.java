@@ -413,9 +413,98 @@ public class TestNg5 extends library{
 			int AllRows=objXSSFSheet.getLastRowNum();
 			for (int rowNumber=1 ; rowNumber<=AllRows;rowNumber++){
 				TestData= readExcelFile(objXSSFSheet,rowNumber);
-				System.out.println(TestData.get("FirstName"));
+				/*System.out.println(TestData.get("FirstName"));
 				System.out.println(TestData.get("LastName"));
-				System.out.println(TestData.get("Address"));
+				System.out.println(TestData.get("Address"));*/
+				library.findElementByLocator(ORep.RegisterFirstName).clear();
+				library.findElementByLocator(ORep.RegisterFirstName).sendKeys(TestData.get("FirstName"));
+				
+				library.findElementByLocator(ORep.RegisterLastName).clear();
+				library.findElementByLocator(ORep.RegisterLastName).sendKeys(TestData.get("LastName"));
+				
+				library.findElementByLocator(ORep.RegisterAddress).clear();
+				library.findElementByLocator(ORep.RegisterAddress).sendKeys(TestData.get("Address"));
+				
+				library.findElementByLocator(ORep.RegisterPhone).clear();
+				library.findElementByLocator(ORep.RegisterPhone).sendKeys(TestData.get("PhoneNumber"));
+				
+				library.findElementByLocator(ORep.RegisterEmailAddress).clear();
+				library.findElementByLocator(ORep.RegisterEmailAddress).sendKeys(TestData.get("EmailAddress"));
+				
+				if(TestData.get("Gender").equals("Male")){
+					library.findElementByLocator(ORep.RegisterGenderMale).click();				
+				}else {
+					library.findElementByLocator(ORep.RegisterGenderFemale).click();	
+				}
+				
+				if(TestData.get("Hobbies").equals("Cricket")){
+					library.findElementByLocator(ORep.RegisterHobbiesCricket).click();
+				}else if(TestData.get("Hobbies").equals("Hockey")){
+					library.findElementByLocator(ORep.RegisterHobbiesHockey).click();
+				}else if(TestData.get("Hobbies").equals("Movies")){
+					library.findElementByLocator(ORep.RegisterHobbiesMovies).click();
+				}
+				
+				if (rowNumber > 1) {
+					driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-close']")).click();
+				}
+				
+				WebElement Languageele = library.findElementByLocator(ORep.RegisterLaunguages);
+				Languageele.click();
+				
+				List<WebElement> AllLanguages= library.findElementsByLocator(ORep.Register_LaungauaesDropDownItems);
+				library.SelectValueFromDropDown(AllLanguages,TestData.get("Languages"));
+				
+				library.findElementByLocator(ORep.Register_Skills_Label).click();
+				
+				WebElement Skills = library.findElementByLocator(ORep.RegisterSkills);
+				Skills.click();
+				
+				List<WebElement> AllSkills= library.findElementsByLocator(ORep.Register_SkillsDropDownItems);
+				library.SelectValueFromDropDown(AllSkills,TestData.get("Skills"));
+				
+				WebElement country = library.findElementByLocator(ORep.RegisterCountry);
+				country.click();
+				
+				List<WebElement> Allcountries= library.findElementsByLocator(ORep.Register_CountryDropDownItems);
+				library.SelectValueFromDropDown(Allcountries,TestData.get("Country"));
+				
+				WebElement select_country = library.findElementByLocator(ORep.RegisterSelect_Country);
+				select_country.click();
+				
+				library.findElementByLocator(ORep.Register_SelectCountry_TextBox).sendKeys(TestData.get("SelectCountry"));
+				try {
+					Robot obj = new Robot();
+					obj.keyPress(KeyEvent.VK_ENTER);
+					obj.keyRelease(KeyEvent.VK_ENTER);
+				} catch (AWTException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				WebElement DOByy = library.findElementByLocator(ORep.RegisterDOBYY);
+				DOByy.click();
+				
+				List<WebElement> Allyears= library.findElementsByLocator(ORep.Register_DOBYY_DropDownItems);
+				library.SelectValueFromDropDown(Allyears,TestData.get("DOB_YY"));
+				
+				WebElement DOBMM = library.findElementByLocator(ORep.RegisterDOBMM);
+				DOBMM.click();
+				
+				List<WebElement> AllMonths= library.findElementsByLocator(ORep.Register_DOBMM_DropDownItems);
+				library.SelectValueFromDropDown(AllMonths,TestData.get("DOB_MM"));
+				
+				WebElement DOBDD = library.findElementByLocator(ORep.RegisterDOBDD);
+				DOBDD.click();
+				
+				List<WebElement> AllDays= library.findElementsByLocator(ORep.Register_DOBDD_DropDownItems);
+				library.SelectValueFromDropDown(AllDays,TestData.get("DOB_DD"));
+				
+				library.findElementByLocator(ORep.RegisterPWD).clear();
+				library.findElementByLocator(ORep.RegisterPWD).sendKeys(TestData.get("Password"));
+				
+				library.findElementByLocator(ORep.RegisterConfirmPWD).clear();
+				library.findElementByLocator(ORep.RegisterConfirmPWD).sendKeys(TestData.get("confirmPassword"));
 				
 			}
 		

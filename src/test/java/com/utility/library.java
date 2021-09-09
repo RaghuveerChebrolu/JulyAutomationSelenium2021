@@ -281,4 +281,16 @@ public class library {
 		return destination;
 	}
 	
+	public static void SelectValueFromDropDown(List<WebElement> AllDropDownItems, String DropDownValue){
+
+		for (int i=0;i<AllDropDownItems.size();i++){
+			String DropDownIndividualValue=AllDropDownItems.get(i).getText();
+			//Select obj= new Select(AllDropDownItems.get(i));
+			//obj.selectByVisibleText(DropDownValue);
+			if(DropDownIndividualValue.equals(DropDownValue)){
+				AllDropDownItems.get(i).click();
+			}
+		}
+		
+	}
 }
