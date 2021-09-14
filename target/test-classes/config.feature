@@ -14,3 +14,4 @@ FileDownload = https://file-examples.com/index.php/sample-documents-download/sam
 AutomationRegister = http://demo.automationtesting.in/Register.html
 webtableLastNames=Williamson,Nash
 BrokenLinks = https://demoqa.com/broken
+Calender = https://jqueryui.com/datepicker/#date-range

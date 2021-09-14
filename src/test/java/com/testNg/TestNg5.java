@@ -26,6 +26,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,6 +37,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
@@ -48,6 +50,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -57,13 +60,14 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
-public class TestNg5 extends library{
-	HashMap<String,String> TestData = new HashMap<String,String>(); 
-			
+public class TestNg5 extends library {
+	HashMap<String, String> TestData = new HashMap<String, String>();
+
 	@Test(priority = 0)
 	public void ValidateGmoOnlineLoadedSuccessfully() {
 		System.out.println("inside testCase1");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		waitForPageToLoad();
 		String ActualTitle = driver.getTitle();
 		System.out.println(ActualTitle);
@@ -76,7 +80,8 @@ public class TestNg5 extends library{
 	@Test(priority = 1)
 	public void ValidateEnterGMOOnline() {
 		System.out.println("inside testCase2");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.findElement(By.name(ObjectRepository.EnterGMOOnlineSubmitbutton)).click();
 		waitForPageToLoad();
 		String ActualTitleText = driver.findElement(By.xpath(ObjectRepository.EnterGMOOnlineText)).getText();
@@ -88,10 +93,10 @@ public class TestNg5 extends library{
 
 	@Test(priority = 2)
 	public void ValidateOrderQty() {
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		waitForPageToLoad();
-		driver.findElement(By.xpath(ObjectRepository.QtyFrameBackpack))
-				.sendKeys("4");
+		driver.findElement(By.xpath(ObjectRepository.QtyFrameBackpack)).sendKeys("4");
 		String UnitPrice = driver
 				.findElement(By
 						.xpath("(//strong[contains(text(),'Frame Backpack')]/../../following-sibling::td/h1/input/../../preceding-sibling::td)[3]"))
@@ -107,7 +112,8 @@ public class TestNg5 extends library{
 	@Test(priority = 3)
 	public void ValidateTotalPriceCalculation() {
 		System.out.println("inside ValidateTotalPrice");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		waitForPageToLoad();
 		String QtyTotalPrice = driver.findElement(By.xpath("//tbody/tr[2]/td[5]")).getText();
 		System.out.println("QtyTotalPrice: " + QtyTotalPrice);
@@ -131,40 +137,42 @@ public class TestNg5 extends library{
 		System.out.println("CalCulatedTotalQtyPrice: " + CalCulatedTotalQtyPrice);
 		GrandTotal = GrandTotal.substring(2);
 		System.out.println("GrandTotal: " + GrandTotal);
-		Float Grand_Total=Float.parseFloat(GrandTotal);
-		Assert.assertEquals(CalCulatedTotalQtyPrice ,Grand_Total);
+		Float Grand_Total = Float.parseFloat(GrandTotal);
+		Assert.assertEquals(CalCulatedTotalQtyPrice, Grand_Total);
 		SoftAssertobj.assertAll();
 	}
-	
-	@Test(priority=4)
-	public void ValidateAlerts(){
+
+	@Test(priority = 4)
+	public void ValidateAlerts() {
 		System.out.println("inside ValidateAlerts");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("AlertURL"));
 		waitForPageToLoad();
 		driver.findElement(By.xpath("//button[@id='alertButton']")).click();
-		Alert Obj =driver.switchTo().alert();//NoAlertPresentException - If the dialog cannot be found
+		Alert Obj = driver.switchTo().alert();// NoAlertPresentException - If
+												// the dialog cannot be found
 		Obj.accept();
-		//WebElement element = driver.findElement(By.id("confirmButton"));
-		//element.click();
-		//driver.findElement(By.id("confirmButton")).click();
+		// WebElement element = driver.findElement(By.id("confirmButton"));
+		// element.click();
+		// driver.findElement(By.id("confirmButton")).click();
 		library.findElementByLocator(ORep.AlertconfirmButton).click();
 		driver.switchTo().alert();
 		String AlerBoxText = Obj.getText();
-		System.out.println("AlerBoxText: "+AlerBoxText);
+		System.out.println("AlerBoxText: " + AlerBoxText);
 		Obj.dismiss();
-		String ActualMessage= driver.findElement(By.xpath("//*[@id='confirmResult']")).getText();
-		System.out.println("ActualMessage: "+ActualMessage);
-		//String ExpectedMessage ="You selected Ok";
+		String ActualMessage = driver.findElement(By.xpath("//*[@id='confirmResult']")).getText();
+		System.out.println("ActualMessage: " + ActualMessage);
+		// String ExpectedMessage ="You selected Ok";
 		SoftAssert SoftAssertobj = new SoftAssert();
 		SoftAssertobj.assertEquals(ActualMessage, "You selected OK");
 		library.findElementByLocator(ORep.AlertpromtButton).click();
-		//driver.findElement(By.id("promtButton")).click();
+		// driver.findElement(By.id("promtButton")).click();
 		Obj.sendKeys("Hi How Are You Doing!");
 		Obj.accept();
-		String ActuaAlertboxEnteredText=driver.findElement(By.xpath("//*[@id='promptResult']")).getText();
-		Assert.assertEquals(ActuaAlertboxEnteredText,"You entered Hi How Are You Doing!" );
-		
+		String ActuaAlertboxEnteredText = driver.findElement(By.xpath("//*[@id='promptResult']")).getText();
+		Assert.assertEquals(ActuaAlertboxEnteredText, "You entered Hi How Are You Doing!");
+
 		try {
 			takescreeshot(driver);
 		} catch (Exception e) {
@@ -173,107 +181,115 @@ public class TestNg5 extends library{
 		}
 		SoftAssertobj.assertAll();
 	}
-	
-	@Test(priority=5)
-	public void HandlingFrames(){
+
+	@Test(priority = 5)
+	public void HandlingFrames() {
 		System.out.println("inside HandlingFrames");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("FramesURL"));
 		waitForPageToLoad();
 		library.SwithToFrameUsingIdOrName("SingleFrame");
 		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hi Inside Single Frame");
 		driver.switchTo().defaultContent();
 		driver.findElement(By.xpath("//a[text()='Iframe with in an Iframe']")).click();
-		//WebElement parentFrameElement=driver.findElement(By.xpath("//*[@id='Multiple']/iframe"));
+		// WebElement
+		// parentFrameElement=driver.findElement(By.xpath("//*[@id='Multiple']/iframe"));
 		library.SwithToFrameUsingWebElement(driver.findElement(By.xpath("//*[@id='Multiple']/iframe")));
-		WebElement childFrameElement=driver.findElement(By.xpath("//iframe[@src='SingleFrame.html']"));
+		WebElement childFrameElement = driver.findElement(By.xpath("//iframe[@src='SingleFrame.html']"));
 		library.SwithToFrameUsingWebElement(childFrameElement);
 		driver.findElement(By.xpath("//input[@type='text']")).sendKeys("Hi Inside frame with in Frame");
 		driver.switchTo().defaultContent();
 	}
-	
-	@Test(priority=6)
-	public void HandlingWindows(){
+
+	@Test(priority = 6)
+	public void HandlingWindows() {
 		System.out.println("inside HandlingWindows");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("WindowsURL"));
 		waitForPageToLoad();
-		String parentWindow =driver.getWindowHandle();
+		String parentWindow = driver.getWindowHandle();
 		Set<String> Allwindows = driver.getWindowHandles();
-		
-		for (String SingleWindow:Allwindows){
+
+		for (String SingleWindow : Allwindows) {
 			driver.switchTo().window(SingleWindow);
-			String title=driver.getTitle();
+			String title = driver.getTitle();
 			System.out.println(title);
-			if(title.equals("Tech Mahindra")){
+			if (title.equals("Tech Mahindra")) {
 				driver.manage().window().maximize();
-				driver.close();//closing the current browser
-			}else if(title.equals("Jio")){
+				driver.close();// closing the current browser
+			} else if (title.equals("Jio")) {
 				driver.manage().window().maximize();
 				driver.close();
-			}else if(title.equals("Jobs - Recruitment - Job Search - Employment -Job Vacancies - Naukri.com")){
-			//action 
+			} else if (title.equals("Jobs - Recruitment - Job Search - Employment -Job Vacancies - Naukri.com")) {
+				// action
 			}
 		}
 		driver.switchTo().window(parentWindow);
-		
-		//driver.quit();
+
+		// driver.quit();
 	}
-	
-	
-	@Test(priority=7)
-	public void HandlingWebTable(){
+
+	@Test(priority = 7)
+	public void HandlingWebTable() {
 		System.out.println("inside HandlingWebTable");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("WebTableURL"));
 		waitForPageToLoad();
-		
-		List<WebElement> AllLastNames= driver.findElements(By.xpath("//table[@id='example']/tbody/tr/td[3]"));
-		
-		int size=AllLastNames.size();
-		for (int i=1;i<=size;i++){
-			String LastName =driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[3]")).getText();
+
+		List<WebElement> AllLastNames = driver.findElements(By.xpath("//table[@id='example']/tbody/tr/td[3]"));
+
+		int size = AllLastNames.size();
+		for (int i = 1; i <= size; i++) {
+			String LastName = driver.findElement(By.xpath("//table[@id='example']/tbody/tr[" + i + "]/td[3]"))
+					.getText();
 			System.out.println(LastName);
-			//if(LastName.equals("Wagner")){
-				String Salary=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[7]")).getText();
-				String StartDate=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[6]")).getText();
-				String Office=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[5]")).getText();
-				String Position=driver.findElement(By.xpath("//table[@id='example']/tbody/tr["+i+"]/td[4]")).getText();
-				System.out.println("Salary of "+LastName +" is : "+Salary);
-				System.out.println("Details of employee when last name is provided : LastName :"+LastName
-						+" Salary : "+Salary+" StartDate :" +StartDate+" Position :"+Position+" Office:"+Office );
-				
-			//}
-			
+			// if(LastName.equals("Wagner")){
+			String Salary = driver.findElement(By.xpath("//table[@id='example']/tbody/tr[" + i + "]/td[7]")).getText();
+			String StartDate = driver.findElement(By.xpath("//table[@id='example']/tbody/tr[" + i + "]/td[6]"))
+					.getText();
+			String Office = driver.findElement(By.xpath("//table[@id='example']/tbody/tr[" + i + "]/td[5]")).getText();
+			String Position = driver.findElement(By.xpath("//table[@id='example']/tbody/tr[" + i + "]/td[4]"))
+					.getText();
+			System.out.println("Salary of " + LastName + " is : " + Salary);
+			System.out.println("Details of employee when last name is provided : LastName :" + LastName + " Salary : "
+					+ Salary + " StartDate :" + StartDate + " Position :" + Position + " Office:" + Office);
+
+			// }
+
 		}
 	}
-	
-	@Test(priority=8)
-	public void MouseOperationRightClick(){
+
+	@Test(priority = 8)
+	public void MouseOperationRightClick() {
 		System.out.println("inside MouseOperationRightClick");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("mouseOpeartionRightClick"));
 		waitForPageToLoad();
 		WebElement rightCLick = library.findElementByLocator(ORep.RightClick);
-		Actions obj=new Actions(driver);
-		//obj.contextClick(rightCLick).build().perform();
+		Actions obj = new Actions(driver);
+		// obj.contextClick(rightCLick).build().perform();
 		library.javascriptExecutorScroolIntoViewAndContextClick(rightCLick, obj);
 		library.findElementByLocator(ORep.copy_right_click).click();
-		String AlertText1=library.SwithToAlertAndReturnText();
-		if(AlertText1.contains("copy")){
+		String AlertText1 = library.SwithToAlertAndReturnText();
+		if (AlertText1.contains("copy")) {
 			library.AcceptAlert();
 		}
-		
+
 	}
-	
-	@Test(priority=9)
-	public void MouseOperationDoubleCLick(){
+
+	@Test(priority = 9)
+	public void MouseOperationDoubleCLick() {
 		System.out.println("inside MouseOperationDoubleCLick");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("mouseOpeartionDoubleClick"));
 		waitForPageToLoad();
-		//JavascriptExecutor js = (JavascriptExecutor)driver;
-		//js.executeScript("window.scrollBy(0,500)");
+		// JavascriptExecutor js = (JavascriptExecutor)driver;
+		// js.executeScript("window.scrollBy(0,500)");
 
 		// js.executeScript("window.scrollBy(0,500)"); //for scrolling
 		// vertically down
@@ -288,44 +304,47 @@ public class TestNg5 extends library{
 		// js.executeScript("0,window.scrollTo(document.body.scrollHeight)");//to
 		// scroll vertically down completely
 		// js.executeScript("document.querySelector(scroll).scrollLeft=1000");
-		
-		WebElement Element=library.findElementByLocator(ORep.DoubleClick_frame);
+
+		WebElement Element = library.findElementByLocator(ORep.DoubleClick_frame);
 		library.SwithToFrameUsingWebElement(Element);
-		
-		WebElement Ele=library.findElementByLocator(ORep.Double_Click);
-		Actions obj = new Actions(driver); 
+
+		WebElement Ele = library.findElementByLocator(ORep.Double_Click);
+		Actions obj = new Actions(driver);
 		library.javascriptExecutorScroolIntoViewAndDoubleClick(Ele, obj);
-		
-	}
-	
-	@Test(priority=10)
-	public void MouseOperationDragAndDrop(){
-		System.out.println("inside MouseOperationDragAndDrop");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
-		driver.navigate().to(propObj.getProperty("mouseOperationDragAndDrop"));
-		waitForPageToLoad();
-		
-		WebElement frame = library.findElementByLocator(ORep.DragAndDropFrame);
-		library.SwithToFrameUsingWebElement(frame);
-		
-		WebElement source=library.findElementByLocator(ORep.draggable);
-		WebElement target=library.findElementByLocator(ORep.droppable);
-		library.DragAndDrop(source, target);
-		String droppedText=library.findElementByLocator(ORep.TextDrop).getText();
-		Assert.assertEquals(droppedText, "Dropped!");
-		
+
 	}
 
-	@Test(priority=11)
-	public void validateFileUpload() throws AWTException, InterruptedException{
+	@Test(priority = 10)
+	public void MouseOperationDragAndDrop() {
+		System.out.println("inside MouseOperationDragAndDrop");
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
+		driver.navigate().to(propObj.getProperty("mouseOperationDragAndDrop"));
+		waitForPageToLoad();
+
+		WebElement frame = library.findElementByLocator(ORep.DragAndDropFrame);
+		library.SwithToFrameUsingWebElement(frame);
+
+		WebElement source = library.findElementByLocator(ORep.draggable);
+		WebElement target = library.findElementByLocator(ORep.droppable);
+		library.DragAndDrop(source, target);
+		String droppedText = library.findElementByLocator(ORep.TextDrop).getText();
+		Assert.assertEquals(droppedText, "Dropped!");
+
+	}
+
+	@Test(priority = 11)
+	public void validateFileUpload() throws AWTException, InterruptedException {
 		System.out.println("inside FileUpload");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("FileUpload"));
 		waitForPageToLoad();
 		WebElement element = library.findElementByLocator(ORep.FileUpload);
 		library.javascriptExecutorScroolIntoViewAndClick(element);
-		//File Obj=new File(System.getProperty("user.dir"+"//src/test//resources/Sample.jpg"));
-		
+		// File Obj=new
+		// File(System.getProperty("user.dir"+"//src/test//resources/Sample.jpg"));
+
 		StringSelection objStringSelection = new StringSelection(
 				System.getProperty("user.dir") + "\\src\\test\\resources\\Sample.jpg");
 		Clipboard objClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -353,38 +372,39 @@ public class TestNg5 extends library{
 		objRobot.keyRelease(KeyEvent.VK_ENTER);
 		Thread.sleep(2000);
 
-		
 	}
-	
-	@Test(priority=12)
-	public void ValidateFileDownload() throws InterruptedException{
+
+	@Test(priority = 12)
+	public void ValidateFileDownload() throws InterruptedException {
 		System.out.println("inside ValidateFileDownload");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("FileDownload"));
 		waitForPageToLoad();
 		library.findElementByLocator(ORep.FileDownload).click();
-		 Thread.sleep(8000);
-		File objFile= new File(System.getProperty("user.dir"));
-		File []listOfFiles = objFile.listFiles();
+		Thread.sleep(8000);
+		File objFile = new File(System.getProperty("user.dir"));
+		File[] listOfFiles = objFile.listFiles();
 		boolean fileFound = false;
-		File obj_File=null;
-		for(File IndividualFile:listOfFiles){
-			String FileName=IndividualFile.getName();
+		File obj_File = null;
+		for (File IndividualFile : listOfFiles) {
+			String FileName = IndividualFile.getName();
 			System.out.println(FileName);
-			if(FileName.contains("file-sample")){
-				fileFound=true;
-				obj_File= new File(FileName);
+			if (FileName.contains("file-sample")) {
+				fileFound = true;
+				obj_File = new File(FileName);
 			}
 		}
 		Assert.assertTrue(fileFound, "File Downloaded Not Found");
 		obj_File.deleteOnExit();
-		
+
 	}
-	
-	@Test(priority=13)
-	public void ValidateBrokenLinks(){
+
+	@Test(priority = 13)
+	public void ValidateBrokenLinks() {
 		System.out.println("inside ValidateFileDownload");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("BrokenLinks"));
 		waitForPageToLoad();
 		List<WebElement> AllLinks = library.findElementsByLocator(ORep.Links);
@@ -399,122 +419,170 @@ public class TestNg5 extends library{
 			}
 		}
 	}
-	
-	@Test(priority=14)
-	public void ValidateDataDriven() throws IOException{
+
+	@Test(priority = 14)
+	public void ValidateDataDriven() throws IOException {
 		System.out.println("inside ValidateFileDownload");
-		ExtTest = ExtReport.createTest(new Object() {}.getClass().getEnclosingMethod().getName());
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
 		driver.navigate().to(propObj.getProperty("AutomationRegister"));
 		waitForPageToLoad();
 		try {
-			FileInputStream ObjFileInputStream = new FileInputStream (new File(System.getProperty("user.dir")+"//src/test/resources//AutomationDemoSIte.xlsx"));
-			XSSFWorkbook objXSSFWorkbook =  new XSSFWorkbook(ObjFileInputStream);
+			FileInputStream ObjFileInputStream = new FileInputStream(
+					new File(System.getProperty("user.dir") + "//src/test/resources//AutomationDemoSIte.xlsx"));
+			XSSFWorkbook objXSSFWorkbook = new XSSFWorkbook(ObjFileInputStream);
 			XSSFSheet objXSSFSheet = objXSSFWorkbook.getSheet("TestData");
-			int AllRows=objXSSFSheet.getLastRowNum();
-			for (int rowNumber=1 ; rowNumber<=AllRows;rowNumber++){
-				TestData= readExcelFile(objXSSFSheet,rowNumber);
-				/*System.out.println(TestData.get("FirstName"));
-				System.out.println(TestData.get("LastName"));
-				System.out.println(TestData.get("Address"));*/
-				library.findElementByLocator(ORep.RegisterFirstName).clear();
-				library.findElementByLocator(ORep.RegisterFirstName).sendKeys(TestData.get("FirstName"));
-				
-				library.findElementByLocator(ORep.RegisterLastName).clear();
-				library.findElementByLocator(ORep.RegisterLastName).sendKeys(TestData.get("LastName"));
-				
-				library.findElementByLocator(ORep.RegisterAddress).clear();
-				library.findElementByLocator(ORep.RegisterAddress).sendKeys(TestData.get("Address"));
-				
-				library.findElementByLocator(ORep.RegisterPhone).clear();
-				library.findElementByLocator(ORep.RegisterPhone).sendKeys(TestData.get("PhoneNumber"));
-				
-				library.findElementByLocator(ORep.RegisterEmailAddress).clear();
-				library.findElementByLocator(ORep.RegisterEmailAddress).sendKeys(TestData.get("EmailAddress"));
-				
-				if(TestData.get("Gender").equals("Male")){
-					library.findElementByLocator(ORep.RegisterGenderMale).click();				
-				}else {
-					library.findElementByLocator(ORep.RegisterGenderFemale).click();	
+			int AllRows = objXSSFSheet.getLastRowNum();
+			for (int rowNumber = 1; rowNumber <= AllRows; rowNumber++) {
+
+				TestData = readExcelFile(objXSSFSheet, rowNumber);
+				if (TestData.get("RunMode").equals("Yes")) {
+					/*
+					 * System.out.println(TestData.get("FirstName"));
+					 * System.out.println(TestData.get("LastName"));
+					 * System.out.println(TestData.get("Address"));
+					 */
+					library.findElementByLocator(ORep.RegisterFirstName).clear();
+					library.findElementByLocator(ORep.RegisterFirstName).sendKeys(TestData.get("FirstName"));
+
+					library.findElementByLocator(ORep.RegisterLastName).clear();
+					library.findElementByLocator(ORep.RegisterLastName).sendKeys(TestData.get("LastName"));
+
+					library.findElementByLocator(ORep.RegisterAddress).clear();
+					library.findElementByLocator(ORep.RegisterAddress).sendKeys(TestData.get("Address"));
+
+					library.findElementByLocator(ORep.RegisterPhone).clear();
+					library.findElementByLocator(ORep.RegisterPhone).sendKeys(TestData.get("PhoneNumber"));
+
+					library.findElementByLocator(ORep.RegisterEmailAddress).clear();
+					library.findElementByLocator(ORep.RegisterEmailAddress).sendKeys(TestData.get("EmailAddress"));
+
+					if (TestData.get("Gender").equals("Male")) {
+						library.findElementByLocator(ORep.RegisterGenderMale).click();
+					} else {
+						library.findElementByLocator(ORep.RegisterGenderFemale).click();
+					}
+
+					if (TestData.get("Hobbies").equals("Cricket")) {
+						library.findElementByLocator(ORep.RegisterHobbiesCricket).click();
+					} else if (TestData.get("Hobbies").equals("Hockey")) {
+						library.findElementByLocator(ORep.RegisterHobbiesHockey).click();
+					} else if (TestData.get("Hobbies").equals("Movies")) {
+						library.findElementByLocator(ORep.RegisterHobbiesMovies).click();
+					}
+
+					if (rowNumber > 1) {
+						driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-close']")).click();
+					}
+
+					WebElement Languageele = library.findElementByLocator(ORep.RegisterLaunguages);
+					Languageele.click();
+
+					List<WebElement> AllLanguages = library
+							.findElementsByLocator(ORep.Register_LaungauaesDropDownItems);
+					library.SelectValueFromDropDown(AllLanguages, TestData.get("Languages"));
+
+					library.findElementByLocator(ORep.Register_Skills_Label).click();
+
+					WebElement Skills = library.findElementByLocator(ORep.RegisterSkills);
+					Skills.click();
+
+					List<WebElement> AllSkills = library.findElementsByLocator(ORep.Register_SkillsDropDownItems);
+					library.SelectValueFromDropDown(AllSkills, TestData.get("Skills"));
+
+					WebElement country = library.findElementByLocator(ORep.RegisterCountry);
+					country.click();
+
+					List<WebElement> Allcountries = library.findElementsByLocator(ORep.Register_CountryDropDownItems);
+					library.SelectValueFromDropDown(Allcountries, TestData.get("Country"));
+
+					WebElement select_country = library.findElementByLocator(ORep.RegisterSelect_Country);
+					select_country.click();
+
+					library.findElementByLocator(ORep.Register_SelectCountry_TextBox)
+							.sendKeys(TestData.get("SelectCountry"));
+					try {
+						Robot obj = new Robot();
+						obj.keyPress(KeyEvent.VK_ENTER);
+						obj.keyRelease(KeyEvent.VK_ENTER);
+					} catch (AWTException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					WebElement DOByy = library.findElementByLocator(ORep.RegisterDOBYY);
+					DOByy.click();
+
+					List<WebElement> Allyears = library.findElementsByLocator(ORep.Register_DOBYY_DropDownItems);
+					library.SelectValueFromDropDown(Allyears, TestData.get("DOB_YY"));
+
+					WebElement DOBMM = library.findElementByLocator(ORep.RegisterDOBMM);
+					DOBMM.click();
+
+					List<WebElement> AllMonths = library.findElementsByLocator(ORep.Register_DOBMM_DropDownItems);
+					library.SelectValueFromDropDown(AllMonths, TestData.get("DOB_MM"));
+
+					WebElement DOBDD = library.findElementByLocator(ORep.RegisterDOBDD);
+					DOBDD.click();
+
+					List<WebElement> AllDays = library.findElementsByLocator(ORep.Register_DOBDD_DropDownItems);
+					library.SelectValueFromDropDown(AllDays, TestData.get("DOB_DD"));
+
+					library.findElementByLocator(ORep.RegisterPWD).clear();
+					library.findElementByLocator(ORep.RegisterPWD).sendKeys(TestData.get("Password"));
+
+					library.findElementByLocator(ORep.RegisterConfirmPWD).clear();
+					library.findElementByLocator(ORep.RegisterConfirmPWD).sendKeys(TestData.get("confirmPassword"));
+
+					// validation will take place like assert condition
+					FileOutputStream ObjeFileOut = new FileOutputStream(new File(
+							System.getProperty("user.dir") + "//src//test//resources//AutomationDemoSite.xlsx"));
+
+					WriteTheResultToExcel(objXSSFWorkbook, rowNumber);
+					objXSSFWorkbook.write(ObjeFileOut);
+					ObjeFileOut.close();
+				} else {
+					System.out.println("RunMode is not marked as Yes . Hence Skipiing this Row/TestCase");
 				}
-				
-				if(TestData.get("Hobbies").equals("Cricket")){
-					library.findElementByLocator(ORep.RegisterHobbiesCricket).click();
-				}else if(TestData.get("Hobbies").equals("Hockey")){
-					library.findElementByLocator(ORep.RegisterHobbiesHockey).click();
-				}else if(TestData.get("Hobbies").equals("Movies")){
-					library.findElementByLocator(ORep.RegisterHobbiesMovies).click();
-				}
-				
-				if (rowNumber > 1) {
-					driver.findElement(By.xpath("//span[@class='ui-icon ui-icon-close']")).click();
-				}
-				
-				WebElement Languageele = library.findElementByLocator(ORep.RegisterLaunguages);
-				Languageele.click();
-				
-				List<WebElement> AllLanguages= library.findElementsByLocator(ORep.Register_LaungauaesDropDownItems);
-				library.SelectValueFromDropDown(AllLanguages,TestData.get("Languages"));
-				
-				library.findElementByLocator(ORep.Register_Skills_Label).click();
-				
-				WebElement Skills = library.findElementByLocator(ORep.RegisterSkills);
-				Skills.click();
-				
-				List<WebElement> AllSkills= library.findElementsByLocator(ORep.Register_SkillsDropDownItems);
-				library.SelectValueFromDropDown(AllSkills,TestData.get("Skills"));
-				
-				WebElement country = library.findElementByLocator(ORep.RegisterCountry);
-				country.click();
-				
-				List<WebElement> Allcountries= library.findElementsByLocator(ORep.Register_CountryDropDownItems);
-				library.SelectValueFromDropDown(Allcountries,TestData.get("Country"));
-				
-				WebElement select_country = library.findElementByLocator(ORep.RegisterSelect_Country);
-				select_country.click();
-				
-				library.findElementByLocator(ORep.Register_SelectCountry_TextBox).sendKeys(TestData.get("SelectCountry"));
-				try {
-					Robot obj = new Robot();
-					obj.keyPress(KeyEvent.VK_ENTER);
-					obj.keyRelease(KeyEvent.VK_ENTER);
-				} catch (AWTException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				WebElement DOByy = library.findElementByLocator(ORep.RegisterDOBYY);
-				DOByy.click();
-				
-				List<WebElement> Allyears= library.findElementsByLocator(ORep.Register_DOBYY_DropDownItems);
-				library.SelectValueFromDropDown(Allyears,TestData.get("DOB_YY"));
-				
-				WebElement DOBMM = library.findElementByLocator(ORep.RegisterDOBMM);
-				DOBMM.click();
-				
-				List<WebElement> AllMonths= library.findElementsByLocator(ORep.Register_DOBMM_DropDownItems);
-				library.SelectValueFromDropDown(AllMonths,TestData.get("DOB_MM"));
-				
-				WebElement DOBDD = library.findElementByLocator(ORep.RegisterDOBDD);
-				DOBDD.click();
-				
-				List<WebElement> AllDays= library.findElementsByLocator(ORep.Register_DOBDD_DropDownItems);
-				library.SelectValueFromDropDown(AllDays,TestData.get("DOB_DD"));
-				
-				library.findElementByLocator(ORep.RegisterPWD).clear();
-				library.findElementByLocator(ORep.RegisterPWD).sendKeys(TestData.get("Password"));
-				
-				library.findElementByLocator(ORep.RegisterConfirmPWD).clear();
-				library.findElementByLocator(ORep.RegisterConfirmPWD).sendKeys(TestData.get("confirmPassword"));
-				
 			}
-		
+
+			objXSSFWorkbook.close();
+			ObjFileInputStream.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	
+	@Test(priority=15)
+	public void ValidateCalender(){
+		System.out.println("inside ValidateFileDownload");
+		ExtTest = ExtReport.createTest(new Object() {
+		}.getClass().getEnclosingMethod().getName());
+		driver.navigate().to(propObj.getProperty("Calender"));
+		waitForPageToLoad();
+		WebElement ele =library.findElementByLocator(ORep.Calender);
+		library.SwithToFrameUsingWebElement(ele);
+		library.findElementByLocator(ORep.Cal_From).click();
+		library.findElementByLocator(ORep.Cal_fromDate).click();
+		library.findElementByLocator(ORep.Cal_to).click();
+		library.findElementByLocator(ORep.Cal_toDate).click();
 	}
 	
+	public void WriteTheResultToExcel(XSSFWorkbook objworkbook, int rowNumber) {
+
+		XSSFSheet objSheet = objworkbook.getSheet("TestData");
+		XSSFCellStyle CellStyle = objworkbook.createCellStyle();
+		// CellStyle.setBorderBottom(XSSFCellStyle.BORDER_THIN);
+		System.out.println("Row Number in excel is :" + rowNumber);
+
+		objSheet.getRow(rowNumber).createCell(18).setCellValue("PASS");
+		objSheet.getRow(rowNumber).getCell(18).setCellStyle(CellStyle);
+
+	}
+
 	public HashMap<String, String> readExcelFile(XSSFSheet objXSSFSheet, int rowNumber) {
 		DataFormatter Format = new DataFormatter();
 		TestData.put("RunMode", objXSSFSheet.getRow(rowNumber).getCell(0).getStringCellValue());
@@ -553,7 +621,7 @@ public class TestNg5 extends library{
 		// System.out.println(ActualTitle);
 
 	}
-	
+
 	@AfterMethod
 	public void afterMethod(ITestResult Result) {
 		System.out.println("inside afterMethod");
@@ -595,7 +663,8 @@ public class TestNg5 extends library{
 	@AfterTest
 	public void afterTest() {
 		System.out.println("inside afterTest");
-		ExtReport.flush();// don't forget to give this in order to generate report
+		ExtReport.flush();// don't forget to give this in order to generate
+							// report
 	}
 
 	@BeforeSuite
@@ -613,7 +682,5 @@ public class TestNg5 extends library{
 	public void afterSuite() {
 		System.out.println("inside afterSuite");
 	}
-	
-	
 
 }

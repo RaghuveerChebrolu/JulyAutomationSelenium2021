@@ -58,5 +58,11 @@ public class ORep {
 	public static final String Register_CountryDropDownItems =  constants.xpath+"&"+"//select[@id='countries']/option";
 	public static final String Register_SelectCountry_TextBox =  constants.xpath+"&"+"//*[@type='search']";
 	
+	public static final String Calender =  constants.xpath+"&"+"//iframe[@class='demo-frame']";
+	public static final String Cal_From =  constants.ID+"&"+"from";
+	public static final String Cal_to =  constants.ID+"&"+"to";
 	
+	public static final String Cal_fromDate =  constants.xpath+"&"+"//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[3]/td[4]";
+	public static final String Cal_toDate =  constants.xpath+"&"+"//*[@id='ui-datepicker-div']/div[1]/table/tbody/tr[4]/td[4]/a";
+			
 }
