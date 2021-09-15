@@ -21,7 +21,7 @@ public class TestNg1 {
 	  System.out.println("inside testCase2");
   }
   
-  @Test(priority=2)
+  @Test(priority=2,invocationCount=4)
   public void testCase3() {
 	  System.out.println("inside testCase3");
   }

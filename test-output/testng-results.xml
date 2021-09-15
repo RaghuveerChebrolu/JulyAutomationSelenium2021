@@ -1,56 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="15" total="16" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="16" passed="16">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="10885" started-at="2021-09-14T03:41:07Z" finished-at="2021-09-14T03:41:18Z">
+  <suite name="Default suite" duration-ms="91939" started-at="2021-09-15T04:08:04Z" finished-at="2021-09-15T04:09:36Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="10885" started-at="2021-09-14T03:41:07Z" finished-at="2021-09-14T03:41:18Z">
-      <class name="com.testNg.TestNg5">
-        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.testNg.TestNg5@192b07fd]" name="beforeSuite" is-config="true" duration-ms="15" started-at="2021-09-14T03:41:07Z" finished-at="2021-09-14T03:41:07Z">
+    <test name="Default test" duration-ms="91939" started-at="2021-09-15T04:08:04Z" finished-at="2021-09-15T04:09:36Z">
+      <class name="com.testNGconcepts.TestNgLoadTesting">
+        <test-method status="PASS" signature="test1()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="test1" duration-ms="123" started-at="2021-09-15T04:08:04Z" finished-at="2021-09-15T04:08:04Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeSuite -->
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.testNg.TestNg5@192b07fd]" name="beforeTest" is-config="true" duration-ms="4255" started-at="2021-09-14T03:41:07Z" finished-at="2021-09-14T03:41:12Z">
+        </test-method> <!-- test1 -->
+        <test-method status="PASS" signature="test1()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="test1" duration-ms="15" started-at="2021-09-15T04:08:04Z" finished-at="2021-09-15T04:08:04Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="beforeClass()[pri:0, instance:com.testNg.TestNg5@192b07fd]" name="beforeClass" is-config="true" duration-ms="170" started-at="2021-09-14T03:41:12Z" finished-at="2021-09-14T03:41:12Z">
+        </test-method> <!-- test1 -->
+        <test-method status="PASS" signature="test1()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="test1" duration-ms="8" started-at="2021-09-15T04:08:04Z" finished-at="2021-09-15T04:08:04Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeClass -->
-        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:com.testNg.TestNg5@192b07fd]" name="beforeMethod" is-config="true" duration-ms="1" started-at="2021-09-14T03:41:12Z" finished-at="2021-09-14T03:41:12Z">
+        </test-method> <!-- test1 -->
+        <test-method status="PASS" signature="test2()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="test2" duration-ms="282" started-at="2021-09-15T04:08:04Z" finished-at="2021-09-15T04:08:05Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- beforeMethod -->
-        <test-method status="PASS" signature="ValidateCalender()[pri:15, instance:com.testNg.TestNg5@192b07fd]" name="ValidateCalender" duration-ms="5795" started-at="2021-09-14T03:41:12Z" finished-at="2021-09-14T03:41:18Z">
+        </test-method> <!-- test2 -->
+        <test-method status="PASS" signature="test2()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="test2" duration-ms="231" started-at="2021-09-15T04:08:04Z" finished-at="2021-09-15T04:08:05Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ValidateCalender -->
-        <test-method status="PASS" signature="afterMethod(org.testng.ITestResult)[pri:0, instance:com.testNg.TestNg5@192b07fd]" name="afterMethod" is-config="true" duration-ms="35" started-at="2021-09-14T03:41:18Z" finished-at="2021-09-14T03:41:18Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=ValidateCalender status=SUCCESS method=TestNg5.ValidateCalender()[pri:15, instance:com.testNg.TestNg5@192b07fd] output={null}]]]>
-              </value>
-            </param>
-          </params>
+        </test-method> <!-- test2 -->
+        <test-method status="PASS" signature="test2()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="test2" duration-ms="245" started-at="2021-09-15T04:08:04Z" finished-at="2021-09-15T04:08:05Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- afterMethod -->
-        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.testNg.TestNg5@192b07fd]" name="afterClass" is-config="true" duration-ms="0" started-at="2021-09-14T03:41:18Z" finished-at="2021-09-14T03:41:18Z">
+        </test-method> <!-- test2 -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="60697" started-at="2021-09-15T04:08:05Z" finished-at="2021-09-15T04:09:05Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- afterClass -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.testNg.TestNg5@192b07fd]" name="afterTest" is-config="true" duration-ms="590" started-at="2021-09-14T03:41:18Z" finished-at="2021-09-14T03:41:18Z">
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="61773" started-at="2021-09-15T04:08:05Z" finished-at="2021-09-15T04:09:07Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- afterTest -->
-        <test-method status="PASS" signature="afterSuite()[pri:0, instance:com.testNg.TestNg5@192b07fd]" name="afterSuite" is-config="true" duration-ms="0" started-at="2021-09-14T03:41:18Z" finished-at="2021-09-14T03:41:18Z">
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="59433" started-at="2021-09-15T04:08:05Z" finished-at="2021-09-15T04:09:04Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- afterSuite -->
-      </class> <!-- com.testNg.TestNg5 -->
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="60639" started-at="2021-09-15T04:08:05Z" finished-at="2021-09-15T04:09:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="61021" started-at="2021-09-15T04:08:05Z" finished-at="2021-09-15T04:09:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="31541" started-at="2021-09-15T04:09:04Z" finished-at="2021-09-15T04:09:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="22525" started-at="2021-09-15T04:09:05Z" finished-at="2021-09-15T04:09:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="19053" started-at="2021-09-15T04:09:06Z" finished-at="2021-09-15T04:09:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="22583" started-at="2021-09-15T04:09:06Z" finished-at="2021-09-15T04:09:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGoogleSearch -->
+        <test-method status="PASS" signature="testGoogleSearch()[pri:0, instance:com.testNGconcepts.TestNgLoadTesting@239963d8]" name="testGoogleSearch" duration-ms="23186" started-at="2021-09-15T04:09:07Z" finished-at="2021-09-15T04:09:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testGoogleSearch -->
+      </class> <!-- com.testNGconcepts.TestNgLoadTesting -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
