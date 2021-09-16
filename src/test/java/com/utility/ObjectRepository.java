@@ -8,5 +8,4 @@ public class ObjectRepository {
 	public static final String RightCLick = "//span[@class='context-menu-one btn btn-neutral']";
 	public static final String DoubleClick_frame="//iframe";
 
-
 }

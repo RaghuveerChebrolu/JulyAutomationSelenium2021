@@ -6,13 +6,14 @@
 			<class name="com.testNg.TestNg1">
 				<methods>
 					<include name="testCase3"></include>
+					<include name="testCase2"></include>
 				</methods>
 			</class>
-			<class name="com.testNg.TestNg2">
+		<!-- 	<class name="com.testNg.TestNg2">
 				<methods>
 					<include name="abc"></include>
 				</methods>
-			</class>
+			</class> -->
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

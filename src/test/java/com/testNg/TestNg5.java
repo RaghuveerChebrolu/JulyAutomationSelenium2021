@@ -63,7 +63,7 @@ import org.testng.annotations.AfterSuite;
 public class TestNg5 extends library {
 	HashMap<String, String> TestData = new HashMap<String, String>();
 
-	@Test(priority = 0)
+	@Test(priority = 0,groups = { "sanity" })
 	public void ValidateGmoOnlineLoadedSuccessfully() {
 		System.out.println("inside testCase1");
 		ExtTest = ExtReport.createTest(new Object() {
@@ -77,7 +77,7 @@ public class TestNg5 extends library {
 
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,groups = { "sanity" })
 	public void ValidateEnterGMOOnline() {
 		System.out.println("inside testCase2");
 		ExtTest = ExtReport.createTest(new Object() {
@@ -91,7 +91,7 @@ public class TestNg5 extends library {
 
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2,groups = { "sanity" })
 	public void ValidateOrderQty() {
 		ExtTest = ExtReport.createTest(new Object() {
 		}.getClass().getEnclosingMethod().getName());
@@ -142,7 +142,7 @@ public class TestNg5 extends library {
 		SoftAssertobj.assertAll();
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4,groups = { "sanity" })
 	public void ValidateAlerts() {
 		System.out.println("inside ValidateAlerts");
 		ExtTest = ExtReport.createTest(new Object() {
@@ -615,7 +615,7 @@ public class TestNg5 extends library {
 		return TestData;
 	}
 
-	@BeforeMethod
+	@BeforeMethod(groups = { "sanity" })
 	public void beforeMethod() {
 		System.out.println("inside beforeMethod");
 		// System.out.println(ActualTitle);
@@ -643,7 +643,7 @@ public class TestNg5 extends library {
 
 	}
 
-	@BeforeClass
+	@BeforeClass(groups = { "sanity" })
 	public void beforeClass() {
 		System.out.println("inside beforeClass");
 		library.StartExtentReport();
@@ -654,7 +654,7 @@ public class TestNg5 extends library {
 		System.out.println("inside afterClass");
 	}
 
-	@BeforeTest
+	@BeforeTest(groups = { "sanity" })
 	public void beforeTest() {
 		System.out.println("inside beforeTest");
 		library.LaunchBrowser();
@@ -667,7 +667,7 @@ public class TestNg5 extends library {
 							// report
 	}
 
-	@BeforeSuite
+	@BeforeSuite(groups = { "sanity" })
 	public void beforeSuite() {
 		System.out.println("inside beforeSuite");
 		try {

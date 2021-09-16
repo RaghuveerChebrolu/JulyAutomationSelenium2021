@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="tests" thread-count="2">
+	<test name="Test-class test 1">
+		<parameter name="test-name" value="test-method One" />
+		<classes>
+			<class name="com.testNGconcepts.TestNgParallelTestsuite" />
+		</classes>
+	</test> <!-- Test -->
+	<test name="Test-class test 2">
+		<parameter name="test-name" value="test-method Two" />
+		<classes>
+			<class name="com.testNGconcepts.TestNgParallelTestsuite" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
