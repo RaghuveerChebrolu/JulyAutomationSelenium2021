@@ -5,9 +5,9 @@ import com.Javabasics.B2244553;
 /*using inhertence
 protected method which is located in another package is accessable*/
 
-public class ProtectedAccessModifier extends B2244553 {
+public class protectedAccessModifier extends B2244553 {
 	public static void main(String args[]) {
-		ProtectedAccessModifier obj12354 = new ProtectedAccessModifier();
+		protectedAccessModifier obj12354 = new protectedAccessModifier();
 		System.out.println("using inhertence");
 		obj12354.msgThroughInherit();
 	}
